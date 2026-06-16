@@ -98,9 +98,8 @@ def resolve_course_label(
     raw: dict[str, str],
     *,
     japanese: bool,
-    running: bool,
 ) -> str | None:
-    """Return the course label, or None/なし when the machine is idle."""
-    if not running:
+    """Return the course label, or None/なし on standby before start."""
+    if raw.get("00E2", "") == "61":
         return EMPTY_LABELS["ja" if japanese else "en"]
     return get_course_label(api, com_id, raw, japanese=japanese)
