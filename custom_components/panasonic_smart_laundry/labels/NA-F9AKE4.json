@@ -1,0 +1,220 @@
+{
+  "00B0": {
+    "41": {
+      "en": "Open",
+      "ja": "開"
+    },
+    "42": {
+      "en": "Closed",
+      "ja": "閉"
+    }
+  },
+  "00D0": {
+    "61": {
+      "en": "Omakase",
+      "ja": "おまかせ"
+    },
+    "62": {
+      "en": "Night",
+      "ja": "ナイト"
+    },
+    "66": {
+      "en": "Blanket",
+      "ja": "毛布"
+    },
+    "68": {
+      "en": "Home dry cleaning",
+      "ja": "おうちクリーニング"
+    },
+    "69": {
+      "en": "Powerful cascade rinse",
+      "ja": "パワフル滝すすぎ（AP4）"
+    },
+    "7F": {
+      "en": "Tub clean",
+      "ja": "槽洗浄（6時間）"
+    },
+    "8B": {
+      "en": "Custom course",
+      "ja": "その他独自コース"
+    },
+    "8F": {
+      "en": "My Home Plus",
+      "ja": "わが家流"
+    }
+  },
+  "00E2": {
+    "41": {
+      "en": "Running — Wash",
+      "ja": "運転中・洗い工程"
+    },
+    "42": {
+      "en": "Running — Rinse",
+      "ja": "運転中・すすぎ工程"
+    },
+    "43": {
+      "en": "Running — Spin",
+      "ja": "運転中・脱水工程"
+    },
+    "44": {
+      "en": "Paused",
+      "ja": "一時停止中"
+    },
+    "45": {
+      "en": "Finished — Wash only",
+      "ja": "運転終了・洗濯のみ完了"
+    },
+    "52": {
+      "en": "Running — Drying and airing",
+      "ja": "運転中・乾燥・送風工程"
+    },
+    "61": {
+      "en": "Standby before start",
+      "ja": "運転前待機中"
+    },
+    "E4": {
+      "en": "Pre-wash cycle",
+      "ja": "予洗い工程"
+    }
+  },
+  "00F1": {
+    "01": {
+      "en": "Custom",
+      "ja": "お好み"
+    },
+    "0B": {
+      "en": "App only",
+      "ja": "アプリ専用"
+    }
+  },
+  "00FA": {
+    "00": {
+      "en": "None",
+      "ja": "なし"
+    },
+    "510081": {
+      "en": "Hypochlorite sanitize",
+      "ja": "次亜除菌"
+    },
+    "520081": {
+      "en": "Powerful cascade wash",
+      "ja": "パワフル滝洗い"
+    },
+    "530081": {
+      "en": "Soil soak",
+      "ja": "泥汚れつけおき"
+    },
+    "570081": {
+      "en": "Delicates",
+      "ja": "おしゃれ着"
+    },
+    "580081": {
+      "en": "Tub air dry",
+      "ja": "槽・風乾燥"
+    },
+    "5B0081": {
+      "en": "Indoor drying",
+      "ja": "部屋干し"
+    },
+    "5E0081": {
+      "en": "Tub clean (1 hour)",
+      "ja": "槽洗浄（1時間）"
+    },
+    "600081": {
+      "en": "Quick wash",
+      "ja": "時短"
+    },
+    "6E0081": {
+      "en": "Wool (AP1)",
+      "ja": "ウール（AP1）"
+    },
+    "6F0081": {
+      "en": "Sheets (AP2)",
+      "ja": "シーツ（AP2）"
+    },
+    "710081": {
+      "en": "Lace curtain (AP3)",
+      "ja": "レースカーテン（AP3）"
+    },
+    "810081": {
+      "en": "Quick tub rinse",
+      "ja": "サッと槽すすぎ"
+    },
+    "820081": {
+      "en": "Auto-dispenser care",
+      "ja": "自動投入お手入れ"
+    },
+    "830081": {
+      "en": "Auto-dispenser care (thorough)",
+      "ja": "自動投入お手入れ（しっかり）"
+    }
+  },
+  "0100": {
+    "01": {
+      "en": "Enabled",
+      "ja": "許可する"
+    },
+    "02": {
+      "en": "Disabled",
+      "ja": "許可しない"
+    }
+  },
+  "0121": {
+    "00": {
+      "en": "Idle",
+      "ja": "操作待機中"
+    },
+    "01": {
+      "en": "Washing",
+      "ja": "洗い中"
+    },
+    "03": {
+      "en": "Rinsing",
+      "ja": "すすぎ中"
+    },
+    "05": {
+      "en": "Spinning",
+      "ja": "脱水中"
+    },
+    "06": {
+      "en": "Drying",
+      "ja": "乾燥中"
+    },
+    "07": {
+      "en": "Fluffing",
+      "ja": "布ほぐし中"
+    },
+    "0C": {
+      "en": "Paused",
+      "ja": "一時停止中"
+    },
+    "0F": {
+      "en": "Corrective rinsing",
+      "ja": "修正すすぎ中"
+    },
+    "13": {
+      "en": "Reservation waiting",
+      "ja": "予約待機中"
+    },
+    "1C": {
+      "en": "Econavi",
+      "ja": "エコナビ点灯中"
+    },
+    "1E": {
+      "en": "Auto tub cleaning",
+      "ja": "自動槽洗浄中"
+    },
+    "1F": {
+      "en": "Bath pump running",
+      "ja": "バスポンプ動作中"
+    },
+    "20": {
+      "en": "Firmware updating",
+      "ja": "ファーム更新中"
+    },
+    "21": {
+      "en": "Pre-washing",
+      "ja": "予洗い中"
+    }
+  }
+}

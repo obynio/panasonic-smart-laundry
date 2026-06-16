@@ -1,0 +1,13 @@
+{
+  "domain": "panasonic_smart_laundry",
+  "name": "Panasonic Smart Laundry",
+  "codeowners": [
+    "@obynio"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/obynio/panasonic",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "0.3.1"
+}

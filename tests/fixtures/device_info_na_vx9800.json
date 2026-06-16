@@ -1,0 +1,1940 @@
+{
+  "devices": [
+    {
+      "product_number": "NA-VX9800L-W",
+      "com_id": "NA-VX9800",
+      "default_name": "洗濯乾燥機",
+      "supported_protocol": "echonetlite",
+      "supported_cmds": [
+        {
+          "protocol": "echonetlite",
+          "set": [
+            "0090",
+            "00E9",
+            "00E7",
+            "00E8",
+            "00E5",
+            "00B2",
+            "00E6",
+            "0130",
+            "0131",
+            "0150",
+            "00EB",
+            "0140",
+            "0092",
+            "0134",
+            "0135",
+            "0132",
+            "0133",
+            "00F4",
+            "00E4",
+            "00F5",
+            "00D0",
+            "00F1"
+          ],
+          "get": [
+            "0090",
+            "00E9",
+            "00E7",
+            "00E8",
+            "00E5",
+            "00E6",
+            "00EC",
+            "0130",
+            "00ED",
+            "0131",
+            "00EA",
+            "00EB",
+            "0092",
+            "0127",
+            "0125",
+            "0123",
+            "0124",
+            "0088",
+            "0121",
+            "0122",
+            "00E4",
+            "00E2",
+            "0129",
+            "00F9",
+            "00B2",
+            "00F7",
+            "0140",
+            "0136",
+            "0137",
+            "0134",
+            "0135",
+            "0132",
+            "0133",
+            "00B0",
+            "00F4",
+            "00F5",
+            "00F2",
+            "00F3",
+            "00F0",
+            "00F1",
+            "0150",
+            "0100",
+            "FF01",
+            "FF02",
+            "0086",
+            "00DB",
+            "00DC",
+            "0120",
+            "0080",
+            "00D0"
+          ],
+          "notify": [
+            "0090",
+            "00E9",
+            "00E7",
+            "00E8",
+            "00E5",
+            "00E6",
+            "0130",
+            "00ED",
+            "0131",
+            "00EB",
+            "0092",
+            "0127",
+            "0125",
+            "0123",
+            "0124",
+            "0088",
+            "0121",
+            "0122",
+            "0100",
+            "00E4",
+            "00E2",
+            "0129",
+            "0086",
+            "00DB",
+            "00DC",
+            "0120",
+            "0080",
+            "0136",
+            "0137",
+            "0134",
+            "0135",
+            "0132",
+            "0133",
+            "00F4",
+            "00F5",
+            "00F2",
+            "00D0",
+            "00F0",
+            "00F1"
+          ],
+          "cmds": [
+            {
+              "id": "0090",
+              "name": "ONタイマ予約設定",
+              "params": [
+                {
+                  "value": "41",
+                  "name": "予約入",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "予約切",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E9",
+              "name": "乾燥時間設定値",
+              "params": [
+                {
+                  "value": "0000",
+                  "name": "設定なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E7",
+              "name": "すすぎモード設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E8",
+              "name": "脱水時間設定値",
+              "params": [
+                {
+                  "value": "FF",
+                  "name": "自動設定",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E5",
+              "name": "洗い時間設定値",
+              "params": [
+                {
+                  "value": "00FF",
+                  "name": "自動設定",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E6",
+              "name": "すすぎ回数設定値",
+              "params": [
+                {
+                  "value": "FF",
+                  "name": "自動",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00EC",
+              "name": "ソフトキープ設定",
+              "params": [
+                {
+                  "value": "41",
+                  "name": "ふんわりキープ入",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "ふんわりキープ切",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0130",
+              "name": "洗剤銘柄設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00ED",
+              "name": "洗濯乾燥残り時間",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0131",
+              "name": "柔軟剤銘柄設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00EA",
+              "name": "洗い温水設定値",
+              "params": [
+                {
+                  "value": "0F",
+                  "name": "15℃",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "1E",
+                  "name": "30℃",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "28",
+                  "name": "40℃",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "3C",
+                  "name": "60℃",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FE",
+                  "name": "温水不使用",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00EB",
+              "name": "風呂水設定",
+              "params": [
+                {
+                  "value": "40",
+                  "name": "風呂水給水なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "41",
+                  "name": "洗いのみ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "すすぎのみ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "44",
+                  "name": "洗い＋すすぎ（最終すすぎのみ）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0092",
+              "name": "ONタイマ相対時間設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0127",
+              "name": "すすぎ時間設定値",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "設定なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0125",
+              "name": "プレ洗浄/プレ乾燥/",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "設定なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0123",
+              "name": "残時間カウントダウン禁止",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "設定なし（運転中以外）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "禁止する",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "禁止しない",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0124",
+              "name": "工程残り時間",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0088",
+              "name": "異常発生状態",
+              "params": [
+                {
+                  "value": "41",
+                  "name": "異常発生有",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "異常発生無",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0121",
+              "name": "運転状況詳細",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "操作待機中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "洗い中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "03",
+                  "name": "すすぎ中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "05",
+                  "name": "脱水中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "06",
+                  "name": "乾燥中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "07",
+                  "name": "布ほぐし中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "08",
+                  "name": "ふんわりキープ中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "09",
+                  "name": "ナノイー運転中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "0A",
+                  "name": "ナノイー槽クリーン待機中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "0B",
+                  "name": "ナノイー槽クリーン中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "0C",
+                  "name": "一時停止中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "0D",
+                  "name": "乾燥残時間見直し中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "0F",
+                  "name": "修正すすぎ中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "10",
+                  "name": "泡消し攪拌中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "12",
+                  "name": "フィルタ報知中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "13",
+                  "name": "予約待機中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "14",
+                  "name": "プレ洗浄中・プレ乾燥中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "16",
+                  "name": "ジェットほぐし中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "18",
+                  "name": "ジェット乾燥中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "19",
+                  "name": "第２送風中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "1A",
+                  "name": "第２送風中＋フィルタ報知中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "1B",
+                  "name": "ふんわりキープ中＋フィルタ報知中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "1C",
+                  "name": "エコナビ点灯中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "1E",
+                  "name": "自動槽洗浄中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "1F",
+                  "name": "バスポンプ動作中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0122",
+              "name": "できたて通知許可",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "設定なし（運転中以外）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "通知許可する",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "通知許可しない",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E4",
+              "name": "水量設定２",
+              "params": [
+                {
+                  "value": "A0",
+                  "name": "高め",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FF",
+                  "name": "自動",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00E2",
+              "name": "洗濯乾燥遷移状態",
+              "params": [
+                {
+                  "value": "41",
+                  "name": "運転中・洗い工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "運転中・すすぎ工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "43",
+                  "name": "運転中・脱水工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "44",
+                  "name": "一時停止中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "45",
+                  "name": "運転終了・洗濯のみ完了",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "51",
+                  "name": "運転終了・洗乾or乾燥のみ、ふんわりキープ設定なし　乾燥完了",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "52",
+                  "name": "運転中・乾燥・送風工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "53",
+                  "name": "運転終了・ふんわりキープ工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "54",
+                  "name": "運転終了・洗乾or乾燥のみ、ふんわりキープ設定あり　ふんわりキープ完了",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "61",
+                  "name": "運転前待機中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "E1",
+                  "name": "運転中・プレ洗浄工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "E2",
+                  "name": "運転中・プレ乾燥工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "E3",
+                  "name": "ナノイー工程",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "EF",
+                  "name": "運転終了",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0129",
+              "name": "槽クリーン時間設定値",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "設定なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F9",
+              "name": "チャイルドロック設定",
+              "params": [
+                {
+                  "value": "01",
+                  "name": "ロック",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "アンロック",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00B2",
+              "name": "洗濯・乾燥設定",
+              "params": [
+                {
+                  "value": "41",
+                  "name": "開始",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "一時停止",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F7",
+              "name": "自動槽洗浄設定",
+              "params": [
+                {
+                  "value": "01",
+                  "name": "あり",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0140",
+              "name": "操作音・終了音設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0136",
+              "name": "洗剤自動投入タンク残量",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "残量あり",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "残量少",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FF",
+                  "name": "不明、未検知",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0137",
+              "name": "柔軟剤自動投入タンク残量",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "残量あり",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "残量少",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FF",
+                  "name": "不明、未検知",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0134",
+              "name": "洗剤自動投入量設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "未設定",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0135",
+              "name": "柔軟剤自動投入量設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "未設定",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0132",
+              "name": "洗剤投入モード設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "自動投入なし（手動投入）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "少なめ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "標準",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "03",
+                  "name": "多め",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FF",
+                  "name": "家電設定を利用",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0133",
+              "name": "柔軟剤投入モード設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "自動投入なし（手動投入）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "少なめ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "標準",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "03",
+                  "name": "多め",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FF",
+                  "name": "家電設定を利用",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00B0",
+              "name": "扉・蓋開閉状態",
+              "params": [
+                {
+                  "value": "41",
+                  "name": "開",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "閉",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F4",
+              "name": "乾燥方法設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "乾燥なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "標準",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "03",
+                  "name": "しっかり",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "04",
+                  "name": "時間指定",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "05",
+                  "name": "省エネ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "FE",
+                  "name": "自動",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F5",
+              "name": "ジェットほぐし・乾燥設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F2",
+              "name": "予約開始相対時間",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F3",
+              "name": "洗濯かごモード動作",
+              "params": [
+                {
+                  "value": "01",
+                  "name": "動作中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "停止中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F0",
+              "name": "ナノイー設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "なし",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "プレ洗浄",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "除菌・消臭（槽回転）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "03",
+                  "name": "除菌・消臭（槽静止）",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "04",
+                  "name": "花粉ケア",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00F1",
+              "name": "わたし流プラスサブモード設定",
+              "params": [
+                {
+                  "value": "00",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "01",
+                  "name": "お好み",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "仕上がりアップ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "03",
+                  "name": "脱水のみ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "04",
+                  "name": "音を抑える",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "05",
+                  "name": "しっかりすすぎ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "06",
+                  "name": "すすぎ１回",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "08",
+                  "name": "しっかり乾燥",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "09",
+                  "name": "タイマー乾燥",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "0A",
+                  "name": "省エネ乾燥",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0150",
+              "name": "調整機能設定",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0100",
+              "name": "遠隔制御操作状態",
+              "params": [
+                {
+                  "value": "01",
+                  "name": "許可する",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "許可しない",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "FF01",
+              "name": "無線モジュールソフトバージョン",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "FF02",
+              "name": "無線モジュールハードバージョン",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0086",
+              "name": "メーカ異常コード",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00DB",
+              "name": "洗濯残り時間",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00DC",
+              "name": "乾燥残り時間",
+              "params": [
+                {
+                  "value": "",
+                  "name": "",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0120",
+              "name": "動作モード",
+              "params": [
+                {
+                  "value": "01",
+                  "name": "通常動作中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "02",
+                  "name": "特殊動作中",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "0080",
+              "name": "動作状態",
+              "params": [
+                {
+                  "value": "30",
+                  "name": "ON",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "31",
+                  "name": "OFF",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            },
+            {
+              "id": "00D0",
+              "name": "洗濯・乾燥コース設定１",
+              "params": [
+                {
+                  "value": "21",
+                  "name": "おまかせ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "22",
+                  "name": "ナイト",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "23",
+                  "name": "どろんこ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "25",
+                  "name": "約40 ℃つけおき",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "26",
+                  "name": "毛布",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "2D",
+                  "name": "約60 ℃除菌",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "32",
+                  "name": "化繊60分",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "40",
+                  "name": "おまかせ＋プレ洗浄",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "41",
+                  "name": "個別洗濯",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "42",
+                  "name": "ダニバスター",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "44",
+                  "name": "約40 ℃おまかせ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "45",
+                  "name": "約40 ℃においスッキリ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "4E",
+                  "name": "省エネ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "4F",
+                  "name": "わたし流プラス",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "61",
+                  "name": "おまかせ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "62",
+                  "name": "ナイト",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "63",
+                  "name": "どろんこ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "65",
+                  "name": "約40 ℃つけおき",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "66",
+                  "name": "毛布",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "67",
+                  "name": "約30 ℃おしゃれ着",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "68",
+                  "name": "おうちクリーニング",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "6A",
+                  "name": "約60 ℃除菌",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "7F",
+                  "name": "槽洗浄",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "80",
+                  "name": "おまかせ＋プレ洗浄",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "81",
+                  "name": "個別洗濯",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "82",
+                  "name": "ダニバスター",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "83",
+                  "name": "約30 ℃槽洗浄",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "84",
+                  "name": "約40 ℃おまかせ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "85",
+                  "name": "約40 ℃においスッキリ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "8F",
+                  "name": "わたし流プラス",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "A1",
+                  "name": "おまかせ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "A2",
+                  "name": "毛布",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "A3",
+                  "name": "ソフト乾燥",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "BF",
+                  "name": "槽乾燥",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "CC",
+                  "name": "ナノイー/ナノイーＸ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "CD",
+                  "name": "ナイト",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "CE",
+                  "name": "省エネ",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                },
+                {
+                  "value": "CF",
+                  "name": "わたし流プラス",
+                  "name_top": "",
+                  "name_bottom": "",
+                  "name_center": "",
+                  "type": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "icon_info": {
+        "icon": "",
+        "base_url": "https://cot.wad.apws.panasonic.com/ja_JP/img/icon/VX9800-W_LL.png"
+      },
+      "rinse_course_name": "おまかせ／わたし流プラス／省エネコース",
+      "release_year": 2017,
+      "laundry_setting": {
+        "drying_supported": true,
+        "drytime_prediction_supported": false,
+        "drytime_schedule_upward_supported": false,
+        "laundry_type": "DRUM",
+        "registrable_dl_courses_count": null,
+        "course_gui_supported": null,
+        "gui_supported": null,
+        "customer_course_setting_supported": false,
+        "cloud_reservation_supported": false
+      },
+      "downloadable_version": {}
+    }
+  ]
+}

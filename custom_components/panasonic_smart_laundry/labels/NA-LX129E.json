@@ -1,0 +1,566 @@
+{
+  "00B0": {
+    "41": {
+      "en": "Open",
+      "ja": "開"
+    },
+    "42": {
+      "en": "Closed",
+      "ja": "閉"
+    }
+  },
+  "00D0": {
+    "21": {
+      "en": "Omakase",
+      "ja": "おまかせ"
+    },
+    "22": {
+      "en": "Night",
+      "ja": "ナイト"
+    },
+    "26": {
+      "en": "Blanket",
+      "ja": "毛布"
+    },
+    "29": {
+      "en": "Powerful cascade (wash and rinse)",
+      "ja": "パワフル滝（洗い・すすぎ）"
+    },
+    "2D": {
+      "en": "~60 °C Omakase (sanitize)",
+      "ja": "約60 ℃おまかせ（除菌）"
+    },
+    "32": {
+      "en": "Synthetic 60 min",
+      "ja": "化繊60分"
+    },
+    "41": {
+      "en": "Individual wash",
+      "ja": "個別洗濯"
+    },
+    "44": {
+      "en": "~40 °C Omakase",
+      "ja": "約40 ℃おまかせ"
+    },
+    "45": {
+      "en": "~40 °C odor refresh",
+      "ja": "約40 ℃においスッキリ"
+    },
+    "47": {
+      "en": "Towels",
+      "ja": "タオル専用"
+    },
+    "49": {
+      "en": "~40 °C soak (daily wear)",
+      "ja": "約40 ℃つけおき（普段着）"
+    },
+    "4A": {
+      "en": "~40 °C blanket",
+      "ja": "約40 ℃毛布"
+    },
+    "4B": {
+      "en": "Custom course",
+      "ja": "その他独自コース"
+    },
+    "4E": {
+      "en": "Energy saving",
+      "ja": "省エネ"
+    },
+    "4F": {
+      "en": "My Home Plus",
+      "ja": "わが家流プラス"
+    },
+    "61": {
+      "en": "Omakase",
+      "ja": "おまかせ"
+    },
+    "62": {
+      "en": "Night",
+      "ja": "ナイト"
+    },
+    "65": {
+      "en": "~40 °C soak (delicates)",
+      "ja": "約40 ℃つけおき（おしゃれ着）"
+    },
+    "66": {
+      "en": "Blanket",
+      "ja": "毛布"
+    },
+    "67": {
+      "en": "~30 °C delicates",
+      "ja": "約30 ℃おしゃれ着"
+    },
+    "68": {
+      "en": "Home dry cleaning",
+      "ja": "おうちクリーニング"
+    },
+    "69": {
+      "en": "Powerful cascade (wash and rinse)",
+      "ja": "パワフル滝（洗い・すすぎ）"
+    },
+    "6A": {
+      "en": "~60 °C Omakase (sanitize)",
+      "ja": "約60 ℃おまかせ（除菌）"
+    },
+    "7F": {
+      "en": "Tub clean",
+      "ja": "槽洗浄"
+    },
+    "81": {
+      "en": "Individual wash",
+      "ja": "個別洗濯"
+    },
+    "83": {
+      "en": "~30 °C tub clean",
+      "ja": "約30 ℃槽洗浄"
+    },
+    "84": {
+      "en": "~40 °C Omakase",
+      "ja": "約40 ℃おまかせ"
+    },
+    "85": {
+      "en": "~40 °C odor refresh",
+      "ja": "約40 ℃においスッキリ"
+    },
+    "86": {
+      "en": "~40 °C delicates",
+      "ja": "約40 ℃おしゃれ着"
+    },
+    "88": {
+      "en": "~60 °C tub mold clean",
+      "ja": "約60 ℃槽カビクリーン"
+    },
+    "89": {
+      "en": "~40 °C soak (daily wear)",
+      "ja": "約40 ℃つけおき（普段着）"
+    },
+    "8A": {
+      "en": "~40 °C blanket",
+      "ja": "約40 ℃毛布"
+    },
+    "8B": {
+      "en": "Custom course",
+      "ja": "その他独自コース"
+    },
+    "8F": {
+      "en": "My Home Plus",
+      "ja": "わが家流プラス"
+    },
+    "A1": {
+      "en": "Omakase",
+      "ja": "おまかせ"
+    },
+    "A2": {
+      "en": "Blanket",
+      "ja": "毛布"
+    },
+    "A3": {
+      "en": "Soft dry",
+      "ja": "ソフト乾燥"
+    },
+    "BE": {
+      "en": "Downloadable course",
+      "ja": "DLコース"
+    },
+    "BF": {
+      "en": "Tub dry",
+      "ja": "槽乾燥"
+    },
+    "CB": {
+      "en": "Custom course",
+      "ja": "その他独自コース"
+    },
+    "CC": {
+      "en": "nanoe or nanoe X",
+      "ja": "ナノイー/ナノイーＸ"
+    },
+    "CD": {
+      "en": "Night",
+      "ja": "ナイト"
+    },
+    "CE": {
+      "en": "Energy saving",
+      "ja": "省エネ"
+    },
+    "CF": {
+      "en": "My Home Plus",
+      "ja": "わが家流プラス"
+    }
+  },
+  "00E2": {
+    "41": {
+      "en": "Running — Wash",
+      "ja": "運転中・洗い工程"
+    },
+    "42": {
+      "en": "Running — Rinse",
+      "ja": "運転中・すすぎ工程"
+    },
+    "43": {
+      "en": "Running — Spin",
+      "ja": "運転中・脱水工程"
+    },
+    "44": {
+      "en": "Paused",
+      "ja": "一時停止中"
+    },
+    "45": {
+      "en": "Finished — Wash only",
+      "ja": "運転終了・洗濯のみ完了"
+    },
+    "51": {
+      "en": "Finished — Dry complete",
+      "ja": "運転終了・洗乾or乾燥のみ、ふんわりキープ設定なし　乾燥完了"
+    },
+    "52": {
+      "en": "Running — Drying and airing",
+      "ja": "運転中・乾燥・送風工程"
+    },
+    "53": {
+      "en": "Finished — Soft keep",
+      "ja": "運転終了・ふんわりキープ工程"
+    },
+    "54": {
+      "en": "Finished — Soft keep complete",
+      "ja": "運転終了・洗乾or乾燥のみ、ふんわりキープ設定あり　ふんわりキープ完了"
+    },
+    "61": {
+      "en": "Standby before start",
+      "ja": "運転前待機中"
+    },
+    "E2": {
+      "en": "Running — Pre-dry",
+      "ja": "運転中・プレ乾燥工程"
+    },
+    "E3": {
+      "en": "Nanoe cycle",
+      "ja": "ナノイー工程"
+    },
+    "E4": {
+      "en": "Pre-wash cycle",
+      "ja": "予洗い工程"
+    },
+    "E5": {
+      "en": "Steam cycle",
+      "ja": "スチーム工程"
+    },
+    "EF": {
+      "en": "Finished",
+      "ja": "運転終了"
+    }
+  },
+  "00F0": {
+    "00": {
+      "en": "None",
+      "ja": "なし"
+    },
+    "03": {
+      "en": "Hygiene care (35 min)",
+      "ja": "衛生ケア（35分）"
+    },
+    "04": {
+      "en": "Hygiene care (60 min)",
+      "ja": "衛生ケア（60分）"
+    },
+    "05": {
+      "en": "Hygiene care (120 min)",
+      "ja": "衛生ケア（120分）"
+    }
+  },
+  "00F1": {
+    "00": {
+      "en": "None",
+      "ja": "なし"
+    },
+    "01": {
+      "en": "Custom",
+      "ja": "お好み"
+    },
+    "02": {
+      "en": "Better finish",
+      "ja": "仕上がりアップ"
+    },
+    "03": {
+      "en": "Spin only",
+      "ja": "脱水のみ"
+    },
+    "05": {
+      "en": "Extra rinse",
+      "ja": "しっかりすすぎ"
+    },
+    "06": {
+      "en": "Single rinse",
+      "ja": "すすぎ１回"
+    },
+    "08": {
+      "en": "Thorough dry",
+      "ja": "しっかり乾燥"
+    },
+    "09": {
+      "en": "Timed dry",
+      "ja": "タイマー乾燥"
+    },
+    "0A": {
+      "en": "Energy-saving dry",
+      "ja": "省エネ乾燥"
+    },
+    "0B": {
+      "en": "App only",
+      "ja": "アプリ専用"
+    }
+  },
+  "00F4": {
+    "00": {
+      "en": "No drying",
+      "ja": "乾燥なし"
+    },
+    "01": {
+      "en": "Standard",
+      "ja": "標準"
+    },
+    "03": {
+      "en": "Thorough",
+      "ja": "しっかり"
+    },
+    "04": {
+      "en": "Timer",
+      "ja": "タイマー"
+    },
+    "05": {
+      "en": "Energy saving",
+      "ja": "省エネ"
+    },
+    "FE": {
+      "en": "Auto",
+      "ja": "自動"
+    }
+  },
+  "00FA": {
+    "00": {
+      "en": "None",
+      "ja": "なし"
+    },
+    "210081": {
+      "en": "Stain release",
+      "ja": "汚れはがし"
+    },
+    "610081": {
+      "en": "Stain release",
+      "ja": "汚れはがし"
+    },
+    "620081": {
+      "en": "Down jacket",
+      "ja": "ダウンジャケット"
+    },
+    "810081": {
+      "en": "Quick tub rinse",
+      "ja": "サッと槽すすぎ"
+    },
+    "820081": {
+      "en": "Auto-dispenser care",
+      "ja": "自動投入お手入れ"
+    },
+    "830081": {
+      "en": "Auto-dispenser care (thorough)",
+      "ja": "自動投入お手入れ（しっかり）"
+    },
+    "9C0081": {
+      "en": "Wrinkle care and deodorize",
+      "ja": "シワとり・消臭"
+    },
+    "9F0081": {
+      "en": "Water repellent restore",
+      "ja": "はっ水回復"
+    }
+  },
+  "0100": {
+    "01": {
+      "en": "Enabled",
+      "ja": "許可する"
+    },
+    "02": {
+      "en": "Disabled",
+      "ja": "許可しない"
+    }
+  },
+  "0121": {
+    "00": {
+      "en": "Idle",
+      "ja": "操作待機中"
+    },
+    "01": {
+      "en": "Washing",
+      "ja": "洗い中"
+    },
+    "03": {
+      "en": "Rinsing",
+      "ja": "すすぎ中"
+    },
+    "05": {
+      "en": "Spinning",
+      "ja": "脱水中"
+    },
+    "06": {
+      "en": "Drying",
+      "ja": "乾燥中"
+    },
+    "07": {
+      "en": "Fluffing",
+      "ja": "布ほぐし中"
+    },
+    "08": {
+      "en": "Soft keep",
+      "ja": "ふんわりキープ中"
+    },
+    "09": {
+      "en": "Nanoe running",
+      "ja": "ナノイー運転中"
+    },
+    "0A": {
+      "en": "Waiting for Nanoe",
+      "ja": "ナノイー槽クリーン待機中"
+    },
+    "0B": {
+      "en": "Nanoe tub clean",
+      "ja": "ナノイー槽クリーン中"
+    },
+    "0C": {
+      "en": "Paused",
+      "ja": "一時停止中"
+    },
+    "0D": {
+      "en": "Revising dry remaining time",
+      "ja": "乾燥残時間見直し中"
+    },
+    "0F": {
+      "en": "Corrective rinsing",
+      "ja": "修正すすぎ中"
+    },
+    "10": {
+      "en": "Foam dissipation stirring",
+      "ja": "泡消し攪拌中"
+    },
+    "12": {
+      "en": "Filter notification",
+      "ja": "フィルタ報知中"
+    },
+    "13": {
+      "en": "Reservation waiting",
+      "ja": "予約待機中"
+    },
+    "14": {
+      "en": "Pre-wash or pre-dry",
+      "ja": "プレ洗浄中・プレ乾燥中"
+    },
+    "16": {
+      "en": "Jet fluffing",
+      "ja": "ジェットほぐし中"
+    },
+    "18": {
+      "en": "Jet drying",
+      "ja": "ジェット乾燥中"
+    },
+    "19": {
+      "en": "Second air flow",
+      "ja": "第２送風中"
+    },
+    "1A": {
+      "en": "Second air flow + filter notification",
+      "ja": "第２送風中＋フィルタ報知中"
+    },
+    "1B": {
+      "en": "Soft keep + filter notification",
+      "ja": "ふんわりキープ中＋フィルタ報知中"
+    },
+    "1C": {
+      "en": "Econavi",
+      "ja": "エコナビ点灯中"
+    },
+    "1E": {
+      "en": "Auto tub cleaning",
+      "ja": "自動槽洗浄中"
+    },
+    "1F": {
+      "en": "Bath pump running",
+      "ja": "バスポンプ動作中"
+    },
+    "20": {
+      "en": "Firmware updating",
+      "ja": "ファーム更新中"
+    },
+    "21": {
+      "en": "Pre-washing",
+      "ja": "予洗い中"
+    },
+    "26": {
+      "en": "Steaming",
+      "ja": "スチーム中"
+    },
+    "28": {
+      "en": "Downloading data",
+      "ja": "データダウンロード中"
+    }
+  },
+  "0136": {
+    "00": {
+      "en": "OK",
+      "ja": "残量あり"
+    },
+    "01": {
+      "en": "Low",
+      "ja": "残量少"
+    },
+    "FF": {
+      "en": "Unknown",
+      "ja": "不明、未検知"
+    }
+  },
+  "0137": {
+    "00": {
+      "en": "OK",
+      "ja": "残量あり"
+    },
+    "01": {
+      "en": "Low",
+      "ja": "残量少"
+    },
+    "FF": {
+      "en": "Unknown",
+      "ja": "不明、未検知"
+    }
+  },
+  "01E6": {
+    "00": {
+      "en": "None",
+      "ja": "なし"
+    },
+    "236140": {
+      "en": "Wool",
+      "ja": "ウール"
+    },
+    "236141": {
+      "en": "Sheets",
+      "ja": "シーツ"
+    },
+    "236142": {
+      "en": "Mattress pad",
+      "ja": "敷きパッド"
+    },
+    "236143": {
+      "en": "Dust mite buster",
+      "ja": "ダニバスター"
+    },
+    "236144": {
+      "en": "Dust mite buster",
+      "ja": "ダニバスター"
+    },
+    "236146": {
+      "en": "Lace curtain",
+      "ja": "レースカーテン"
+    },
+    "241100": {
+      "en": "Quick 2 kg",
+      "ja": "お急ぎ2 kg"
+    }
+  }
+}

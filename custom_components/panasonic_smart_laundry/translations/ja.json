@@ -1,0 +1,81 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Panasonic Smart Laundry",
+        "description": "Smart Laundry アプリと同じ CLUB Panasonic アカウントでサインインしてください。",
+        "data": {
+          "username": "メールアドレス",
+          "password": "パスワード"
+        }
+      },
+      "model": {
+        "title": "機種を選択",
+        "description": "洗濯機の COM_ID を選んでください（例: NA-VX9800）。",
+        "data": {
+          "com_id": "COM_ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Panasonic Smart Laundry の再認証",
+        "description": "セッションの有効期限が切れました。パスワードを再入力してください。",
+        "data": {
+          "password": "パスワード"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "ユーザー名またはパスワードが正しくありません。",
+      "invalid_model": "選択した機種はサポートされていません。",
+      "cannot_connect": "Panasonic クラウドに接続できませんでした。",
+      "no_appliance": "アカウントに登録された洗濯機が見つかりませんでした。",
+      "unknown": "予期しないエラーが発生しました。"
+    },
+    "abort": {
+      "already_configured": "この洗濯機は既に設定されています。",
+      "reauth_successful": "再認証に成功しました。"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "operation": {
+        "name": "運転状況"
+      },
+      "transition": {
+        "name": "洗濯乾燥遷移状態"
+      },
+      "course": {
+        "name": "コース"
+      },
+      "sub_mode": {
+        "name": "サブモード"
+      },
+      "door": {
+        "name": "扉"
+      },
+      "remote_control": {
+        "name": "遠隔制御"
+      },
+      "detergent_supply": {
+        "name": "洗剤残量"
+      },
+      "softener_supply": {
+        "name": "柔軟剤残量"
+      },
+      "remaining_time": {
+        "name": "残り時間"
+      },
+      "wash_remaining_time": {
+        "name": "洗濯残り時間"
+      },
+      "dry_remaining_time": {
+        "name": "乾燥残り時間"
+      }
+    },
+    "binary_sensor": {
+      "running": {
+        "name": "運転中"
+      }
+    }
+  }
+}

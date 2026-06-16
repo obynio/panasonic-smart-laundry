@@ -1,0 +1,81 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Panasonic Smart Laundry",
+        "description": "Sign in with your CLUB Panasonic account used by the Smart Laundry app.",
+        "data": {
+          "username": "Email",
+          "password": "Password"
+        }
+      },
+      "model": {
+        "title": "Select machine model",
+        "description": "Choose the COM_ID that matches your washing machine (e.g. NA-VX9800).",
+        "data": {
+          "com_id": "COM_ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Panasonic Smart Laundry",
+        "description": "Your session expired. Enter your password again.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid username or password.",
+      "invalid_model": "The selected machine model is not supported.",
+      "cannot_connect": "Could not connect to Panasonic cloud.",
+      "no_appliance": "No registered washing machine was found in your account.",
+      "unknown": "Unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This washing machine is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "operation": {
+        "name": "Operation"
+      },
+      "transition": {
+        "name": "Transition"
+      },
+      "course": {
+        "name": "Course"
+      },
+      "sub_mode": {
+        "name": "Sub mode"
+      },
+      "door": {
+        "name": "Door"
+      },
+      "remote_control": {
+        "name": "Remote control"
+      },
+      "detergent_supply": {
+        "name": "Detergent supply"
+      },
+      "softener_supply": {
+        "name": "Softener supply"
+      },
+      "remaining_time": {
+        "name": "Remaining time"
+      },
+      "wash_remaining_time": {
+        "name": "Wash remaining time"
+      },
+      "dry_remaining_time": {
+        "name": "Dry remaining time"
+      }
+    },
+    "binary_sensor": {
+      "running": {
+        "name": "Running"
+      }
+    }
+  }
+}
