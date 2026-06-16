@@ -1,8 +1,6 @@
 # Panasonic Smart Laundry for Home Assistant
 
-Custom integration for Panasonic Japan **Smart Laundry** (`com.panasonic.SmartLaundry`) washing machines, including the **NA-VX9800L-W**.
-
-It uses the same CLUB Panasonic OAuth flow and cloud API as the official Android app.
+Custom Home Assistant integration for Panasonic Japan connected washing machines.
 
 ## Reset history
 
@@ -35,7 +33,7 @@ data:
 ### HACS (recommended)
 
 1. Add this repository as a custom HACS integration:
-   - Repository: `obynio/panasonic`
+   - Repository: `obynio/panasonic-smart-laundry`
    - Category: Integration
 2. Install **Panasonic Smart Laundry**
 3. Restart Home Assistant
@@ -48,12 +46,49 @@ Copy the folder `custom_components/panasonic_smart_laundry` into your Home Assis
 
 1. Go to **Settings → Devices & services → Add integration**
 2. Search for **Panasonic Smart Laundry**
-3. Sign in with the same CLUB Panasonic account as the mobile app
+3. Sign in with your CLUB Panasonic account
 4. Defaults are pre-filled for the NA-VX9800:
    - Product number: `NA-VX9800L-W`
    - Communication ID: `NA-VX9800`
 
 The integration discovers your selected appliance from `POST /laundry/v5/users`.
+
+## Supported machines
+
+During setup, choose the **communication ID (COM ID)** that matches your machine. These models are supported:
+
+### NA-F series
+
+- `NA-F10AKE3`, `NA-F10AKE4`, `NA-F10AKE5`
+- `NA-F8AKE3`, `NA-F8AKE4`, `NA-F8AKE5`
+- `NA-F9AKE3`, `NA-F9AKE4`, `NA-F9AKE5`
+- `NA-FA10K2`, `NA-FA10K3`, `NA-FA10K5`
+- `NA-FA11K1`, `NA-FA11K2`, `NA-FA11K3`, `NA-FA11K5`
+- `NA-FA12V1`, `NA-FA12V2`, `NA-FA12V3`, `NA-FA12V5`, `NA-FA12V6`
+- `NA-FA8K2`, `NA-FA8K3`, `NA-FA8K5`
+- `NA-FA9K2`, `NA-FA9K3`, `NA-FA9K5`
+- `NA-FW10K1`, `NA-FW10K2`
+
+### NA-LX series
+
+- `NA-LX127A`, `NA-LX127B`, `NA-LX127C`, `NA-LX127D`, `NA-LX127E`
+- `NA-LX129A`, `NA-LX129B`, `NA-LX129C`, `NA-LX129D`, `NA-LX129E`
+
+### NA-SD series
+
+- `NA-SD10UA`, `NA-SD10UB`
+
+### NA-VG series
+
+- `NA-VG1200`, `NA-VG1300`, `NA-VG1400`, `NA-VG1500`
+- `NA-VG2200`, `NA-VG2300`, `NA-VG2400`, `NA-VG2500`
+- `NA-VG2600`, `NA-VG2700`, `NA-VG2800`, `NA-VG2900`
+
+### NA-VX series
+
+- `NA-VX900A`, `NA-VX900B`, `NA-VX9800` (default), `NA-VX9900`
+
+If your model is missing, open an issue with the COM ID shown on your machine label.
 
 ## Entities
 

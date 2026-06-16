@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Panasonic Smart Laundry",
-        "description": "Sign in with your CLUB Panasonic account used by the Smart Laundry app.",
+        "description": "Sign in with your CLUB Panasonic account.",
         "data": {
           "username": "Email",
           "password": "Password"

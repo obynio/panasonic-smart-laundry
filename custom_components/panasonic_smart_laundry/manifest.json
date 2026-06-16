@@ -5,7 +5,7 @@
     "@obynio"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/obynio/panasonic",
+  "documentation": "https://github.com/obynio/panasonic-smart-laundry",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "requirements": [],
