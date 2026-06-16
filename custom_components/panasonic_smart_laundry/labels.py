@@ -28,6 +28,8 @@ logger = logging.getLogger(__name__)
 
 LABELS_DIR = Path(__file__).parent / "labels"
 COURSE_PROPERTIES = ("00D0", "00FA", "01E6")
+TRANSITION = "00E2"
+NO_COURSE_TRANSITIONS = frozenset({"00", "61"})
 EMPTY_LABELS = {"ja": "なし", "en": "None"}
 
 
@@ -99,7 +101,7 @@ def resolve_course_label(
     *,
     japanese: bool,
 ) -> str | None:
-    """Return the course label, or None/なし on standby before start."""
-    if raw.get("00E2", "") == "61":
+    """Return the course label, or None/なし when no course is running."""
+    if raw.get(TRANSITION, "") in NO_COURSE_TRANSITIONS:
         return EMPTY_LABELS["ja" if japanese else "en"]
     return get_course_label(api, com_id, raw, japanese=japanese)

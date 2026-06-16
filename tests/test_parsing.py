@@ -138,11 +138,18 @@ def test_course_none_on_standby_before_start():
     assert resolve_course_label(None, "NA-VX9800", raw, japanese=True) == "なし"
 
 
-def test_course_shown_when_idle():
+def test_course_none_when_idle():
     from panasonic_smart_laundry.labels import resolve_course_label
 
     raw = {"00D0": "81", "0080": "31", "0121": "00", "00E2": "00"}
-    assert resolve_course_label(None, "NA-VX9800", raw, japanese=False) == "Individual wash"
+    assert resolve_course_label(None, "NA-VX9800", raw, japanese=False) == "None"
+    assert resolve_course_label(None, "NA-VX9800", raw, japanese=True) == "なし"
+
+
+def test_transition_none_when_idle():
+    from panasonic_smart_laundry.labels import get_display_label
+
+    assert get_display_label(None, "NA-VX9800", "00E2", "00", japanese=False) == "None"
 
 
 def test_course_shown_during_wash():
