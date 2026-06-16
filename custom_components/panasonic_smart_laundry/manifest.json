@@ -10,5 +10,5 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/obynio/panasonic-smart-laundry/issues",
   "requirements": [],
-  "version": "0.3.1"
+  "version": "1.0.0"
 }
