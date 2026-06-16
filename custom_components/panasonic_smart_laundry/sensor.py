@@ -13,8 +13,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .const import DOMAIN
 from .coordinator import PanasonicSmartLaundryCoordinator
 from .entity import PanasonicEntity
-from .labels import COURSE_PROPERTIES, get_course_label, get_display_label
-from .state import parse_remaining_time
+from .labels import COURSE_PROPERTIES, get_display_label, resolve_course_label
+from .state import is_device_running, parse_remaining_time
 
 REMOTE_CONTROL_ICONS = {"01": "mdi:remote", "02": "mdi:remote-off"}
 
@@ -145,11 +145,12 @@ class LabeledStateSensor(PanasonicEntity, SensorEntity):
 
         japanese = self.hass.config.language.startswith("ja")
         if self._is_course:
-            label = get_course_label(
+            label = resolve_course_label(
                 self.coordinator.api,
                 self.coordinator.com_id,
                 self.coordinator.data.raw,
                 japanese=japanese,
+                running=is_device_running(self.coordinator.data),
             )
         else:
             label = get_display_label(

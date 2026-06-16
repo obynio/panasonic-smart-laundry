@@ -130,6 +130,28 @@ def test_device_data_from_econavi_fixture(parsed):
     assert is_device_running(data) is False
 
 
+def test_course_none_when_not_running():
+    from panasonic_smart_laundry.labels import resolve_course_label
+
+    raw = {"00D0": "81", "0080": "31", "0121": "00", "00E2": "00"}
+    assert resolve_course_label(
+        None, "NA-VX9800", raw, japanese=False, running=False
+    ) == "None"
+    assert resolve_course_label(
+        None, "NA-VX9800", raw, japanese=True, running=False
+    ) == "なし"
+
+
+def test_course_shown_when_running():
+    from panasonic_smart_laundry.labels import resolve_course_label
+
+    raw = {"00D0": "81", "0080": "30", "0121": "01", "00E2": "41"}
+    assert is_device_running(build_device_data(raw)) is True
+    assert resolve_course_label(
+        None, "NA-VX9800", raw, japanese=False, running=True
+    ) == "Individual wash"
+
+
 def test_device_data_with_numeric_times():
     data = build_device_data(
         {

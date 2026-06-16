@@ -90,3 +90,17 @@ def get_course_label(
         if label:
             return label
     return None
+
+
+def resolve_course_label(
+    api: PanasonicSmartLaundryApi,
+    com_id: str,
+    raw: dict[str, str],
+    *,
+    japanese: bool,
+    running: bool,
+) -> str | None:
+    """Return the course label, or None/なし when the machine is idle."""
+    if not running:
+        return EMPTY_LABELS["ja" if japanese else "en"]
+    return get_course_label(api, com_id, raw, japanese=japanese)
