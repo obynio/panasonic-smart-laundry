@@ -2,6 +2,8 @@
 
 Custom Home Assistant integration for Panasonic Japan connected washing machines.
 
+<img width="403" height="377" alt="entities" src="https://github.com/user-attachments/assets/919cf09c-0726-4e2a-9163-7b1ef80ddfcd" />
+
 ## Reset history
 
 ```
@@ -52,6 +54,15 @@ Copy the folder `custom_components/panasonic_smart_laundry` into your Home Assis
    - Communication ID: `NA-VX9800`
 
 The integration discovers your selected appliance from `POST /laundry/v5/users`.
+
+## Transitions
+
+<img width="600" alt="transitions" src="https://github.com/user-attachments/assets/a6900c9b-4a1d-4e1d-adcd-a5f099041d6b" />
+
+
+## Time
+
+<img width="600" alt="time" src="https://github.com/user-attachments/assets/346b6260-1180-4944-a57f-d9b3877b0ead" />
 
 ## Supported machines
 
