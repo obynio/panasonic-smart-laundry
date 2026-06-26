@@ -425,6 +425,39 @@ class PanasonicSmartLaundryApi:
         )
         return self._parse_status_response(data)
 
+    def _supported_cmd_block(self) -> dict[str, Any] | None:
+        if not self._device_info:
+            return None
+        supported_cmds = self._device_info.get("supported_cmds") or []
+        if not supported_cmds:
+            return None
+        return supported_cmds[0]
+
+    def _status_property_ids(self) -> set[str]:
+        block = self._supported_cmd_block()
+        if not block:
+            return set()
+        ids: set[str] = set()
+        for key in ("get", "notify"):
+            for prop_id in block.get(key) or []:
+                ids.add(_normalize_prop_id(prop_id))
+        return ids
+
+    def supports_supply_property(self, prop_id: str) -> bool:
+        """Return whether this machine exposes a tank supply level property."""
+        block = self._supported_cmd_block()
+        if not block:
+            return False
+        normalized = _normalize_prop_id(prop_id)
+        if normalized in self._status_property_ids():
+            return True
+        for cmd in block.get("cmds") or []:
+            if _normalize_prop_id(cmd.get("id", "")) != normalized:
+                continue
+            if "タンク残量" in (cmd.get("name") or ""):
+                return True
+        return False
+
     def get_label(self, prop_id: str, value: str | None) -> str | None:
         """Resolve a human-readable label from cached device info."""
         if not value or not self._device_info:

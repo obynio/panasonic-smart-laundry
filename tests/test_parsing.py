@@ -102,6 +102,28 @@ def test_label_requires_device_info():
     assert client.get_label("0121", "1C") is None
 
 
+def test_supports_supply_property(device):
+    client = Api(session=None, username="user@example.com", password="secret")  # type: ignore[arg-type]
+    client._device_info = device
+
+    assert client.supports_supply_property("0136") is True
+    assert client.supports_supply_property("0137") is True
+    assert client.supports_supply_property("136") is True
+    assert client.supports_supply_property("0138") is False
+
+
+def test_supports_supply_property_without_device_info():
+    client = Api(session=None, username="user@example.com", password="secret")  # type: ignore[arg-type]
+    assert client.supports_supply_property("0136") is False
+
+
+def test_has_bundled_property():
+    from panasonic_smart_laundry.labels import has_bundled_property
+
+    assert has_bundled_property("NA-VX9800", "0136") is True
+    assert has_bundled_property("NA-F8AKE5", "0136") is False
+
+
 @pytest.mark.parametrize(
     ("raw", "minutes"),
     [

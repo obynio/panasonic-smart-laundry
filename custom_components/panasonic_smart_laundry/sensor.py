@@ -13,7 +13,12 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from .const import DOMAIN
 from .coordinator import PanasonicSmartLaundryCoordinator
 from .entity import PanasonicEntity
-from .labels import COURSE_PROPERTIES, get_display_label, resolve_course_label
+from .labels import (
+    COURSE_PROPERTIES,
+    get_display_label,
+    has_bundled_property,
+    resolve_course_label,
+)
 from .state import parse_remaining_time
 
 REMOTE_CONTROL_ICONS = {"01": "mdi:remote", "02": "mdi:remote-off"}
@@ -24,6 +29,20 @@ REMAINING_TIME_SENSORS: tuple[tuple[str, str, str], ...] = (
     ("00DC", "dry_remaining_time", "mdi:tumble-dryer"),
 )
 
+SUPPLY_SENSORS: tuple[tuple[str, str, str, dict[str, str]], ...] = (
+    ("0136", "detergent_supply", "mdi:bucket-outline", {"01": "mdi:bucket-alert-outline"}),
+    ("0137", "softener_supply", "mdi:scent", {"01": "mdi:scent-off"}),
+)
+
+
+def _machine_supports_supply(
+    coordinator: PanasonicSmartLaundryCoordinator, prop_id: str
+) -> bool:
+    api = coordinator.api
+    if api.supports_supply_property(prop_id):
+        return True
+    return has_bundled_property(coordinator.com_id, prop_id)
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -33,79 +52,73 @@ async def async_setup_entry(
     """Set up Panasonic Smart Laundry sensors."""
     coordinator: PanasonicSmartLaundryCoordinator = hass.data[DOMAIN][entry.entry_id]
     entry_id = entry.entry_id
-    async_add_entities(
-        [
+    entities: list[SensorEntity] = [
+        LabeledStateSensor(
+            coordinator,
+            entry_id,
+            SensorEntityDescription(
+                key="0121",
+                translation_key="operation",
+                icon="mdi:washing-machine",
+            ),
+        ),
+        LabeledStateSensor(
+            coordinator,
+            entry_id,
+            SensorEntityDescription(
+                key="00E2",
+                translation_key="transition",
+                icon="mdi:state-machine",
+            ),
+            default_value="00",
+        ),
+        LabeledStateSensor(
+            coordinator,
+            entry_id,
+            SensorEntityDescription(
+                key="00D0",
+                translation_key="course",
+                icon="mdi:tune-variant",
+            ),
+            alternate_props=COURSE_PROPERTIES[1:],
+        ),
+        LabeledStateSensor(
+            coordinator,
+            entry_id,
+            SensorEntityDescription(
+                key="0100",
+                translation_key="remote_control",
+                icon="mdi:remote",
+            ),
+            icon_map=REMOTE_CONTROL_ICONS,
+        ),
+    ]
+    for prop_id, translation_key, icon, icon_map in SUPPLY_SENSORS:
+        if not _machine_supports_supply(coordinator, prop_id):
+            continue
+        entities.append(
             LabeledStateSensor(
                 coordinator,
                 entry_id,
                 SensorEntityDescription(
-                    key="0121",
-                    translation_key="operation",
-                    icon="mdi:washing-machine",
-                ),
-            ),
-            LabeledStateSensor(
-                coordinator,
-                entry_id,
-                SensorEntityDescription(
-                    key="00E2",
-                    translation_key="transition",
-                    icon="mdi:state-machine",
-                ),
-                default_value="00",
-            ),
-            LabeledStateSensor(
-                coordinator,
-                entry_id,
-                SensorEntityDescription(
-                    key="00D0",
-                    translation_key="course",
-                    icon="mdi:tune-variant",
-                ),
-                alternate_props=COURSE_PROPERTIES[1:],
-            ),
-            LabeledStateSensor(
-                coordinator,
-                entry_id,
-                SensorEntityDescription(
-                    key="0100",
-                    translation_key="remote_control",
-                    icon="mdi:remote",
-                ),
-                icon_map=REMOTE_CONTROL_ICONS,
-            ),
-            LabeledStateSensor(
-                coordinator,
-                entry_id,
-                SensorEntityDescription(
-                    key="0136",
-                    translation_key="detergent_supply",
-                    icon="mdi:bucket-outline",
-                ),
-                icon_map={"01": "mdi:bucket-alert-outline"},
-            ),
-            LabeledStateSensor(
-                coordinator,
-                entry_id,
-                SensorEntityDescription(
-                    key="0137",
-                    translation_key="softener_supply",
-                    icon="mdi:scent",
-                ),
-                icon_map={"01": "mdi:scent-off"},
-            ),
-            *(
-                RemainingTimeSensor(
-                    coordinator,
-                    entry_id,
-                    prop_id=prop_id,
+                    key=prop_id,
                     translation_key=translation_key,
                     icon=icon,
-                )
-                for prop_id, translation_key, icon in REMAINING_TIME_SENSORS
-            ),
-        ]
+                ),
+                icon_map=icon_map,
+            )
+        )
+    entities.extend(
+        RemainingTimeSensor(
+            coordinator,
+            entry_id,
+            prop_id=prop_id,
+            translation_key=translation_key,
+            icon=icon,
+        )
+        for prop_id, translation_key, icon in REMAINING_TIME_SENSORS
     )
+    async_add_entities(entities)
 
 
 class LabeledStateSensor(PanasonicEntity, SensorEntity):

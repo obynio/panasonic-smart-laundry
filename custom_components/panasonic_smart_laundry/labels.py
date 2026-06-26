@@ -55,6 +55,11 @@ def _bundled(com_id: str, prop_id: str, value: str, *, japanese: bool) -> str | 
     return text or None
 
 
+def has_bundled_property(com_id: str, prop_id: str) -> bool:
+    """Return whether bundled labels define values for a property."""
+    return prop_id.upper() in _load_model_labels(com_id)
+
+
 def get_display_label(
     api: PanasonicSmartLaundryApi,
     com_id: str,

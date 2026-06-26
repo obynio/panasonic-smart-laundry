@@ -148,6 +148,12 @@ export PANASONIC_PASSWORD="your-password"
 uv run python auth.py
 ```
 
-## Security
+## FAQ
 
-Store credentials only in Home Assistant's config entry storage. Do not commit tokens or passwords to git.
+> My machine has 3 tanks. The third tank for fashionable laundry detergent or bleach does not show up as an option.
+
+Panasonic doesn't expose the property of that third tank in their /info endpoint like the two others. So to be able to implement this type of supply I would need the property code of their Echonet Lite from the `/status` endpoint from someone with the machine.
+
+> Can you add an option to remotely select a course and start it ?
+
+This is planned to be added, but I want to make sure that the read only endpoints are correctly implemented first and send back reliable informations.
