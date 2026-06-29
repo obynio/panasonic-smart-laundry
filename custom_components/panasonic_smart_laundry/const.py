@@ -91,6 +91,7 @@ OPERATION_KEYS = {
     "07": "fluffing",
     "08": "soft_keep",
     "0C": "paused",
+    "12": "filter_due",
     "13": "reservation_waiting",
     "EF": "finished",
 }
@@ -103,6 +104,7 @@ TRANSITION_KEYS = {
     "45": "finished_wash_only",
     "51": "finished_dry",
     "52": "running_dry",
+    "54": "finished_soft_keep",
     "61": "standby",
     "EF": "finished",
 }

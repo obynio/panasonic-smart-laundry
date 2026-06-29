@@ -70,6 +70,14 @@ def _normalize_prop_value(value: Any) -> str:
     return text
 
 
+_LIVE_STATUS_UNAVAILABLE_CODE = "L2E05-017"
+
+
+def _live_status_unavailable(err: PanasonicApiError) -> bool:
+    """Return whether a live status poll failed because the device was unreachable."""
+    return _LIVE_STATUS_UNAVAILABLE_CODE in str(err)
+
+
 class PanasonicAuthError(Exception):
     """Authentication failed."""
 
@@ -413,16 +421,26 @@ class PanasonicSmartLaundryApi:
         return self._device_info
 
     async def get_status(self, *, appliance_id: str) -> dict[str, str]:
-        """Fetch live ECHONET property values from the cloud."""
-        data = await self._request(
-            "GET",
-            "/laundry/v5/device/status/",
-            extra_headers={
-                "X-ApplianceId": appliance_id,
-                "X-Cached": "false",
-                "X-VerifyAppliance": "true",
-            },
-        )
+        """Fetch ECHONET property values, preferring live data with cached fallback."""
+        status_headers = {
+            "X-ApplianceId": appliance_id,
+            "X-VerifyAppliance": "true",
+        }
+        try:
+            data = await self._request(
+                "GET",
+                "/laundry/v5/device/status/",
+                extra_headers={**status_headers, "X-Cached": "false"},
+            )
+        except PanasonicApiError as err:
+            if not _live_status_unavailable(err):
+                raise
+            logger.debug("Live status unavailable, falling back to cached status: %s", err)
+            data = await self._request(
+                "GET",
+                "/laundry/v5/device/status/",
+                extra_headers=status_headers,
+            )
         return self._parse_status_response(data)
 
     def _supported_cmd_block(self) -> dict[str, Any] | None:

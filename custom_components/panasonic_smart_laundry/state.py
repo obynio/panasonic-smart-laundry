@@ -16,7 +16,7 @@ _WASH_TRANSITIONS = frozenset({"41", "42", "43", "E1"})
 _DRY_OPS = frozenset({"06", "07"})
 _NANOE_OPS = frozenset({"09", "0A", "0B"})
 _NANOE_TRANSITIONS = frozenset({"E3"})
-_IDLE_OPS = frozenset({"00", "EF"})
+_IDLE_OPS = frozenset({"00", "12", "EF"})
 _IDLE_TRANSITIONS = frozenset({"00", "45", "51", "53", "54", "61", "EF"})
 
 
@@ -97,12 +97,10 @@ def build_device_data(raw: dict[str, str]) -> LaundryDeviceData:
 
 
 def is_device_running(data: LaundryDeviceData) -> bool:
-    """True when the machine is on or in an active cycle."""
+    """True when the machine is in an active cycle."""
     power = data.raw.get("0080")
     if power == "31":
         return False
-    if power == "30":
-        return True
 
     if any(
         minutes is not None and minutes > 0
