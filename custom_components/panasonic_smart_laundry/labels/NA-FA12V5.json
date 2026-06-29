@@ -65,15 +65,15 @@
   },
   "00E2": {
     "41": {
-      "en": "Running — Wash",
+      "en": "Wash cycle",
       "ja": "運転中・洗い工程"
     },
     "42": {
-      "en": "Running — Rinse",
+      "en": "Rinse cycle",
       "ja": "運転中・すすぎ工程"
     },
     "43": {
-      "en": "Running — Spin",
+      "en": "Spin cycle",
       "ja": "運転中・脱水工程"
     },
     "44": {
@@ -81,11 +81,11 @@
       "ja": "一時停止中"
     },
     "45": {
-      "en": "Finished — Wash only",
+      "en": "Wash only complete",
       "ja": "運転終了・洗濯のみ完了"
     },
     "52": {
-      "en": "Running — Drying and airing",
+      "en": "Drying and airing",
       "ja": "運転中・乾燥・送風工程"
     },
     "61": {

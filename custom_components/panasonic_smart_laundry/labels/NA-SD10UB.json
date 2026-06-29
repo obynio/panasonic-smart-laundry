@@ -109,15 +109,15 @@
   },
   "00E2": {
     "41": {
-      "en": "Running — Wash",
+      "en": "Wash cycle",
       "ja": "運転中・洗い工程"
     },
     "42": {
-      "en": "Running — Rinse",
+      "en": "Rinse cycle",
       "ja": "運転中・すすぎ工程"
     },
     "43": {
-      "en": "Running — Spin",
+      "en": "Spin cycle",
       "ja": "運転中・脱水工程"
     },
     "44": {
@@ -125,23 +125,23 @@
       "ja": "一時停止中"
     },
     "45": {
-      "en": "Finished — Wash only",
+      "en": "Wash only complete",
       "ja": "運転終了・洗濯のみ完了"
     },
     "51": {
-      "en": "Finished — Dry complete",
+      "en": "Drying complete",
       "ja": "運転終了・洗乾or乾燥のみ、ふんわりキープ設定なし　乾燥完了"
     },
     "52": {
-      "en": "Running — Drying and airing",
+      "en": "Drying and airing",
       "ja": "運転中・乾燥・送風工程"
     },
     "53": {
-      "en": "Finished — Soft keep",
+      "en": "Fluff keep active",
       "ja": "運転終了・ふんわりキープ工程"
     },
     "54": {
-      "en": "Finished — Soft keep complete",
+      "en": "Fluff keep done",
       "ja": "運転終了・洗乾or乾燥のみ、ふんわりキープ設定あり　ふんわりキープ完了"
     },
     "61": {
@@ -149,7 +149,7 @@
       "ja": "運転前待機中"
     },
     "E2": {
-      "en": "Running — Pre-dry",
+      "en": "Pre-dry cycle",
       "ja": "運転中・プレ乾燥工程"
     },
     "E4": {
@@ -259,7 +259,7 @@
       "ja": "布ほぐし中"
     },
     "08": {
-      "en": "Soft keep",
+      "en": "Fluff keep",
       "ja": "ふんわりキープ中"
     },
     "0C": {
@@ -279,7 +279,7 @@
       "ja": "泡消し攪拌中"
     },
     "12": {
-      "en": "Filter notification",
+      "en": "Filter due",
       "ja": "フィルタ報知中"
     },
     "13": {
@@ -303,11 +303,11 @@
       "ja": "第２送風中"
     },
     "1A": {
-      "en": "Second air flow + filter notification",
+      "en": "Second air filter due",
       "ja": "第２送風中＋フィルタ報知中"
     },
     "1B": {
-      "en": "Soft keep + filter notification",
+      "en": "Fluff keep filter due",
       "ja": "ふんわりキープ中＋フィルタ報知中"
     },
     "1C": {
