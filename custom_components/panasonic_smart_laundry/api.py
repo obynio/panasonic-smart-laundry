@@ -78,6 +78,11 @@ class PanasonicApiError(Exception):
     """API request failed."""
 
 
+def _live_status_unavailable(err: PanasonicApiError) -> bool:
+    """True when the cloud cannot return a live status snapshot."""
+    return "L2E05-017" in str(err)
+
+
 class PanasonicSmartLaundryApi:
     """Async client for the Panasonic Smart Laundry cloud API."""
 
@@ -413,16 +418,25 @@ class PanasonicSmartLaundryApi:
         return self._device_info
 
     async def get_status(self, *, appliance_id: str) -> dict[str, str]:
-        """Fetch live ECHONET property values from the cloud."""
-        data = await self._request(
-            "GET",
-            "/laundry/v5/device/status/",
-            extra_headers={
-                "X-ApplianceId": appliance_id,
-                "X-Cached": "false",
-                "X-VerifyAppliance": "true",
-            },
-        )
+        """Fetch ECHONET property values, preferring live data with cached fallback."""
+        base_headers = {
+            "X-ApplianceId": appliance_id,
+            "X-VerifyAppliance": "true",
+        }
+        try:
+            data = await self._request(
+                "GET",
+                "/laundry/v5/device/status/",
+                extra_headers={**base_headers, "X-Cached": "false"},
+            )
+        except PanasonicApiError as err:
+            if not _live_status_unavailable(err):
+                raise
+            data = await self._request(
+                "GET",
+                "/laundry/v5/device/status/",
+                extra_headers=base_headers,
+            )
         return self._parse_status_response(data)
 
     def _supported_cmd_block(self) -> dict[str, Any] | None:

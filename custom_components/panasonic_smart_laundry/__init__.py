@@ -19,7 +19,7 @@ from .coordinator import PanasonicSmartLaundryCoordinator
 
 logger = logging.getLogger(__name__)
 
-platforms = [Platform.SENSOR, Platform.BINARY_SENSOR]
+platforms = [Platform.BINARY_SENSOR, Platform.SENSOR]
 
 
 def _refresh_before_expiry(token_expires_at: float) -> datetime:

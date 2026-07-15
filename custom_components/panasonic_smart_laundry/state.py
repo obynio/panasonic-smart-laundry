@@ -18,6 +18,7 @@ _NANOE_OPS = frozenset({"09", "0A", "0B"})
 _NANOE_TRANSITIONS = frozenset({"E3"})
 _IDLE_OPS = frozenset({"00", "12", "EF"})
 _IDLE_TRANSITIONS = frozenset({"00", "45", "51", "53", "54", "61", "EF"})
+_FINISHED_TRANSITIONS = frozenset({"45", "51", "53", "54", "EF"})
 
 
 @dataclass
@@ -30,6 +31,7 @@ class LaundryDeviceData:
     remaining_minutes: RemainingTimeValue
     wash_remaining_minutes: RemainingTimeValue
     dry_remaining_minutes: RemainingTimeValue
+    progress_percent: int | None = None
 
 
 def parse_remaining_time(raw: str | None) -> RemainingTimeValue:
@@ -116,3 +118,40 @@ def is_device_running(data: LaundryDeviceData) -> bool:
     if operation and operation not in _IDLE_OPS:
         return True
     return bool(transition and transition not in _IDLE_TRANSITIONS)
+
+
+def compute_cycle_progress(
+    data: LaundryDeviceData,
+    *,
+    running: bool,
+    was_running: bool,
+    baseline_minutes: int | None,
+) -> tuple[int | None, int | None]:
+    """Estimate whole-course progress from total remaining time (00ED).
+
+    Returns (progress_percent, updated_baseline_minutes).
+    """
+    if not running:
+        transition = data.raw.get(TRANSITION, "")
+        if transition in _FINISHED_TRANSITIONS:
+            return 100, None
+        return 0, None
+
+    remaining = data.remaining_minutes
+    if remaining is None:
+        return None, baseline_minutes
+
+    if (running and not was_running) or baseline_minutes is None:
+        if remaining > 0:
+            baseline_minutes = remaining
+    elif remaining > baseline_minutes:
+        baseline_minutes = remaining
+
+    if baseline_minutes is None or baseline_minutes <= 0:
+        return (100 if remaining <= 0 else None), baseline_minutes
+
+    if remaining <= 0:
+        return 100, baseline_minutes
+
+    progress = round(100 * (1 - remaining / baseline_minutes))
+    return max(0, min(100, progress)), baseline_minutes

@@ -6,7 +6,7 @@ from collections.abc import Sequence
 
 from homeassistant.components.sensor import SensorEntity, SensorEntityDescription, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import UnitOfTime
+from homeassistant.const import PERCENTAGE, UnitOfTime
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -84,30 +84,7 @@ async def async_setup_entry(
                 icon="mdi:washing-machine",
             ),
         ),
-        LabeledStateSensor(
-            coordinator,
-            entry_id,
-            SensorEntityDescription(
-                key="0100",
-                translation_key="remote_control",
-                icon="mdi:remote",
-            ),
-            icon_map=REMOTE_CONTROL_ICONS,
-        ),
     ]
-    if has_bundled_property(coordinator.com_id, DOOR_PROPERTY):
-        entities.append(
-            LabeledStateSensor(
-                coordinator,
-                entry_id,
-                SensorEntityDescription(
-                    key=DOOR_PROPERTY,
-                    translation_key="door",
-                    icon="mdi:door",
-                ),
-                icon_map=DOOR_ICONS,
-            )
-        )
     for prop_id, translation_key, icon, icon_map in SUPPLY_SENSORS:
         if not _machine_supports_supply(coordinator, prop_id):
             continue
@@ -123,6 +100,7 @@ async def async_setup_entry(
                 icon_map=icon_map,
             )
         )
+    entities.append(CourseProgressSensor(coordinator, entry_id))
     entities.extend(
         RemainingTimeSensor(
             coordinator,
@@ -132,6 +110,31 @@ async def async_setup_entry(
             icon=icon,
         )
         for prop_id, translation_key, icon in REMAINING_TIME_SENSORS
+    )
+    if has_bundled_property(coordinator.com_id, DOOR_PROPERTY):
+        entities.append(
+            LabeledStateSensor(
+                coordinator,
+                entry_id,
+                SensorEntityDescription(
+                    key=DOOR_PROPERTY,
+                    translation_key="door",
+                    icon="mdi:door",
+                ),
+                icon_map=DOOR_ICONS,
+            )
+        )
+    entities.append(
+        LabeledStateSensor(
+            coordinator,
+            entry_id,
+            SensorEntityDescription(
+                key="0100",
+                translation_key="remote_control",
+                icon="mdi:remote",
+            ),
+            icon_map=REMOTE_CONTROL_ICONS,
+        )
     )
     async_add_entities(entities)
 
@@ -200,6 +203,32 @@ class LabeledStateSensor(PanasonicEntity, SensorEntity):
     def extra_state_attributes(self) -> dict[str, str | None]:
         prop_id, value = self._resolved_value()
         return {"raw_value": value, "property": prop_id}
+
+
+class CourseProgressSensor(PanasonicEntity, SensorEntity):
+    """Estimated whole-course progress from total remaining time."""
+
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def __init__(
+        self,
+        coordinator: PanasonicSmartLaundryCoordinator,
+        entry_id: str,
+    ) -> None:
+        super().__init__(
+            coordinator,
+            entry_id,
+            SensorEntityDescription(
+                key="progress",
+                translation_key="progress",
+                icon="mdi:progress-clock",
+            ),
+        )
+
+    @property
+    def native_value(self) -> int | None:
+        return self.coordinator.data.progress_percent
 
 
 class RemainingTimeSensor(PanasonicEntity, SensorEntity):

@@ -338,3 +338,30 @@ def test_wash_remaining_time_shown_when_washing(
 )
 def test_running_state(properties, running):
     assert is_device_running(build_device_data(properties)) is running
+
+
+@pytest.mark.parametrize(
+    ("properties", "running", "was_running", "baseline", "expected_progress", "expected_baseline"),
+    [
+        ({"0121": "00", "00E2": "00"}, False, False, None, 0, None),
+        ({"0121": "12", "00E2": "54"}, False, True, 120, 100, None),
+        ({"0121": "01", "00E2": "41", "00ED": "0200"}, True, False, None, 0, 120),
+        ({"0121": "01", "00E2": "41", "00ED": "0100"}, True, True, 120, 50, 120),
+        ({"0121": "01", "00E2": "41", "00ED": "0000"}, True, True, 120, 100, 120),
+        ({"0121": "01", "00E2": "41", "00ED": "0400"}, True, True, 120, 0, 240),
+    ],
+)
+def test_cycle_progress(
+    properties, running, was_running, baseline, expected_progress, expected_baseline
+):
+    from tests.conftest import state
+
+    data = build_device_data(properties)
+    progress, new_baseline = state.compute_cycle_progress(
+        data,
+        running=running,
+        was_running=was_running,
+        baseline_minutes=baseline,
+    )
+    assert progress == expected_progress
+    assert new_baseline == expected_baseline

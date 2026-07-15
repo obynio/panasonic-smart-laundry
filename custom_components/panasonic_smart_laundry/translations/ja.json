@@ -70,6 +70,9 @@
       },
       "dry_remaining_time": {
         "name": "乾燥残り時間"
+      },
+      "progress": {
+        "name": "進捗"
       }
     },
     "binary_sensor": {

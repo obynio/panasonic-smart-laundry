@@ -12,17 +12,18 @@ from .const import DOMAIN
 from .coordinator import PanasonicSmartLaundryCoordinator
 
 ENTITY_DISPLAY_ORDER: dict[str, int] = {
-    "course": 0,
-    "transition": 1,
-    "operation": 2,
-    "remote_control": 3,
-    "door": 4,
-    "detergent_supply": 5,
-    "softener_supply": 6,
+    "running": 0,
+    "course": 1,
+    "transition": 2,
+    "operation": 3,
+    "detergent_supply": 4,
+    "softener_supply": 5,
+    "progress": 6,
     "remaining_time": 7,
     "wash_remaining_time": 8,
     "dry_remaining_time": 9,
-    "running": 10,
+    "door": 10,
+    "remote_control": 11,
 }
 
 

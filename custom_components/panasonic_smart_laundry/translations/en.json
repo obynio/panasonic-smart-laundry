@@ -70,6 +70,9 @@
       },
       "dry_remaining_time": {
         "name": "Dry remaining time"
+      },
+      "progress": {
+        "name": "Progress"
       }
     },
     "binary_sensor": {
