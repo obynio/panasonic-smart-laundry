@@ -22,6 +22,8 @@ from .labels import (
 from .state import parse_remaining_time
 
 REMOTE_CONTROL_ICONS = {"01": "mdi:remote", "02": "mdi:remote-off"}
+DOOR_ICONS = {"41": "mdi:door-open", "42": "mdi:door-closed"}
+DOOR_PROPERTY = "00B0"
 
 REMAINING_TIME_SENSORS: tuple[tuple[str, str, str], ...] = (
     ("00ED", "remaining_time", "mdi:timer-outline"),
@@ -93,6 +95,19 @@ async def async_setup_entry(
             icon_map=REMOTE_CONTROL_ICONS,
         ),
     ]
+    if has_bundled_property(coordinator.com_id, DOOR_PROPERTY):
+        entities.append(
+            LabeledStateSensor(
+                coordinator,
+                entry_id,
+                SensorEntityDescription(
+                    key=DOOR_PROPERTY,
+                    translation_key="door",
+                    icon="mdi:door",
+                ),
+                icon_map=DOOR_ICONS,
+            )
+        )
     for prop_id, translation_key, icon, icon_map in SUPPLY_SENSORS:
         if not _machine_supports_supply(coordinator, prop_id):
             continue

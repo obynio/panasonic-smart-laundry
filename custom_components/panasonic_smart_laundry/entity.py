@@ -16,12 +16,13 @@ ENTITY_DISPLAY_ORDER: dict[str, int] = {
     "transition": 1,
     "operation": 2,
     "remote_control": 3,
-    "detergent_supply": 4,
-    "softener_supply": 5,
-    "remaining_time": 6,
-    "wash_remaining_time": 7,
-    "dry_remaining_time": 8,
-    "running": 9,
+    "door": 4,
+    "detergent_supply": 5,
+    "softener_supply": 6,
+    "remaining_time": 7,
+    "wash_remaining_time": 8,
+    "dry_remaining_time": 9,
+    "running": 10,
 }
 
 

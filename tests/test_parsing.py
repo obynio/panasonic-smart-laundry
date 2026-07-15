@@ -97,6 +97,13 @@ def test_labels_from_device_info(device):
     assert client.get_label("0080", "31") == "OFF"
 
 
+def test_door_label_from_bundled_labels():
+    from panasonic_smart_laundry.labels import get_display_label
+
+    assert get_display_label(None, "NA-VX9800", "00B0", "41", japanese=False) == "Open"
+    assert get_display_label(None, "NA-VX9800", "00B0", "42", japanese=False) == "Closed"
+
+
 def test_label_requires_device_info():
     client = Api(session=None, username="user@example.com", password="secret")  # type: ignore[arg-type]
     assert client.get_label("0121", "1C") is None
