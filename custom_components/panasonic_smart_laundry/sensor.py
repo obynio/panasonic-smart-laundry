@@ -57,10 +57,11 @@ async def async_setup_entry(
             coordinator,
             entry_id,
             SensorEntityDescription(
-                key="0121",
-                translation_key="operation",
-                icon="mdi:washing-machine",
+                key="00D0",
+                translation_key="course",
+                icon="mdi:tune-variant",
             ),
+            alternate_props=COURSE_PROPERTIES[1:],
         ),
         LabeledStateSensor(
             coordinator,
@@ -76,11 +77,10 @@ async def async_setup_entry(
             coordinator,
             entry_id,
             SensorEntityDescription(
-                key="00D0",
-                translation_key="course",
-                icon="mdi:tune-variant",
+                key="0121",
+                translation_key="operation",
+                icon="mdi:washing-machine",
             ),
-            alternate_props=COURSE_PROPERTIES[1:],
         ),
         LabeledStateSensor(
             coordinator,

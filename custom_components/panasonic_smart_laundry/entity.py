@@ -2,11 +2,25 @@
 
 from __future__ import annotations
 
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN
 from .coordinator import PanasonicSmartLaundryCoordinator
+
+ENTITY_DISPLAY_ORDER: dict[str, int] = {
+    "course": 0,
+    "transition": 1,
+    "operation": 2,
+    "remote_control": 3,
+    "detergent_supply": 4,
+    "softener_supply": 5,
+    "remaining_time": 6,
+    "wash_remaining_time": 7,
+    "dry_remaining_time": 8,
+    "running": 9,
+}
 
 
 class PanasonicEntity(CoordinatorEntity[PanasonicSmartLaundryCoordinator]):
@@ -34,3 +48,16 @@ class PanasonicEntity(CoordinatorEntity[PanasonicSmartLaundryCoordinator]):
         }
         if description.icon:
             self._attr_icon = description.icon
+
+    async def async_added_to_hass(self) -> None:
+        """Set entity registry display order when supported."""
+        await super().async_added_to_hass()
+        translation_key = self.translation_key
+        if translation_key is None:
+            return
+        order = ENTITY_DISPLAY_ORDER.get(translation_key)
+        if order is None:
+            return
+        registry = er.async_get(self.hass)
+        if registry.async_get(self.entity_id) is not None:
+            registry.async_update_entity(self.entity_id, order=order)
