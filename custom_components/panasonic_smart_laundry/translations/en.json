@@ -48,28 +48,28 @@
         "name": "Course"
       },
       "sub_mode": {
-        "name": "Sub Mode"
+        "name": "Sub mode"
       },
       "door": {
         "name": "Door"
       },
       "remote_control": {
-        "name": "Remote Control"
+        "name": "Remote control"
       },
       "detergent_supply": {
-        "name": "Detergent Supply"
+        "name": "Detergent supply"
       },
       "softener_supply": {
-        "name": "Softener Supply"
+        "name": "Softener supply"
       },
       "remaining_time": {
-        "name": "Remaining Time"
+        "name": "Remaining time"
       },
       "wash_remaining_time": {
-        "name": "Wash Remaining Time"
+        "name": "Wash remaining time"
       },
       "dry_remaining_time": {
-        "name": "Dry Remaining Time"
+        "name": "Dry remaining time"
       }
     },
     "binary_sensor": {

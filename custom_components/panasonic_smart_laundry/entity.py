@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import inspect
+
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -59,5 +61,8 @@ class PanasonicEntity(CoordinatorEntity[PanasonicSmartLaundryCoordinator]):
         if order is None:
             return
         registry = er.async_get(self.hass)
-        if registry.async_get(self.entity_id) is not None:
-            registry.async_update_entity(self.entity_id, order=order)
+        if registry.async_get(self.entity_id) is None:
+            return
+        if "order" not in inspect.signature(registry.async_update_entity).parameters:
+            return
+        registry.async_update_entity(self.entity_id, order=order)
