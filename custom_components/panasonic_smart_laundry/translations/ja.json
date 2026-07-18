@@ -65,12 +65,6 @@
       "remaining_time": {
         "name": "残り時間"
       },
-      "wash_remaining_time": {
-        "name": "洗濯残り時間"
-      },
-      "dry_remaining_time": {
-        "name": "乾燥残り時間"
-      },
       "progress": {
         "name": "進捗"
       }

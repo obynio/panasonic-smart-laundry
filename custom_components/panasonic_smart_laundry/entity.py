@@ -20,10 +20,8 @@ ENTITY_DISPLAY_ORDER: dict[str, int] = {
     "softener_supply": 5,
     "progress": 6,
     "remaining_time": 7,
-    "wash_remaining_time": 8,
-    "dry_remaining_time": 9,
-    "door": 10,
-    "remote_control": 11,
+    "door": 8,
+    "remote_control": 9,
 }
 
 

@@ -19,17 +19,10 @@ from .labels import (
     has_bundled_property,
     resolve_course_label,
 )
-from .state import parse_remaining_time
 
 REMOTE_CONTROL_ICONS = {"01": "mdi:remote", "02": "mdi:remote-off"}
 DOOR_ICONS = {"41": "mdi:door-open", "42": "mdi:door-closed"}
 DOOR_PROPERTY = "00B0"
-
-REMAINING_TIME_SENSORS: tuple[tuple[str, str, str], ...] = (
-    ("00ED", "remaining_time", "mdi:timer-outline"),
-    ("00DB", "wash_remaining_time", "mdi:timer-outline"),
-    ("00DC", "dry_remaining_time", "mdi:tumble-dryer"),
-)
 
 SUPPLY_SENSORS: tuple[tuple[str, str, str, dict[str, str]], ...] = (
     ("0136", "detergent_supply", "mdi:bucket-outline", {"01": "mdi:bucket-alert-outline"}),
@@ -101,15 +94,14 @@ async def async_setup_entry(
             )
         )
     entities.append(CourseProgressSensor(coordinator, entry_id))
-    entities.extend(
+    entities.append(
         RemainingTimeSensor(
             coordinator,
             entry_id,
-            prop_id=prop_id,
-            translation_key=translation_key,
-            icon=icon,
+            prop_id="00ED",
+            translation_key="remaining_time",
+            icon="mdi:timer-outline",
         )
-        for prop_id, translation_key, icon in REMAINING_TIME_SENSORS
     )
     if has_bundled_property(coordinator.com_id, DOOR_PROPERTY):
         entities.append(
@@ -232,7 +224,7 @@ class CourseProgressSensor(PanasonicEntity, SensorEntity):
 
 
 class RemainingTimeSensor(PanasonicEntity, SensorEntity):
-    """Remaining time sensor with a shared parser for total, wash, and dry."""
+    """Total remaining time sensor."""
 
     _attr_native_unit_of_measurement = UnitOfTime.MINUTES
     _attr_state_class = SensorStateClass.MEASUREMENT
@@ -259,14 +251,7 @@ class RemainingTimeSensor(PanasonicEntity, SensorEntity):
 
     @property
     def native_value(self) -> int | None:
-        data = self.coordinator.data
-        if self._prop_id == "00ED":
-            return data.remaining_minutes
-        if self._prop_id == "00DB":
-            return data.wash_remaining_minutes
-        if self._prop_id == "00DC":
-            return data.dry_remaining_minutes
-        return parse_remaining_time(data.raw.get(self._prop_id))
+        return self.coordinator.data.remaining_minutes
 
     @property
     def extra_state_attributes(self) -> dict[str, str | int | None]:
