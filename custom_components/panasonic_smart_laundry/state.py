@@ -16,6 +16,7 @@ _WASH_TRANSITIONS = frozenset({"41", "42", "43", "E1"})
 _DRY_OPS = frozenset({"06", "07"})
 _NANOE_OPS = frozenset({"09", "0A", "0B"})
 _NANOE_TRANSITIONS = frozenset({"E3"})
+_WAITING_FOR_NANOE_OP = "0A"
 _IDLE_OPS = frozenset({"00", "12", "EF"})
 _IDLE_TRANSITIONS = frozenset({"00", "45", "51", "53", "54", "61", "EF"})
 _FINISHED_TRANSITIONS = frozenset({"45", "51", "53", "54", "EF"})
@@ -81,14 +82,21 @@ def _is_drying(operation: str, transition: str) -> bool:
     return operation in _DRY_OPS or transition == "52"
 
 
+def _is_waiting_for_nanoe(operation: str) -> bool:
+    return operation == _WAITING_FOR_NANOE_OP
+
+
 def build_device_data(raw: dict[str, str]) -> LaundryDeviceData:
     """Build normalized state from a status property map."""
     operation, transition = _phase(raw)
+    remaining_minutes = parse_remaining_time(raw.get("00ED"))
+    if _is_waiting_for_nanoe(operation):
+        remaining_minutes = 0
     return LaundryDeviceData(
         raw=raw,
         operation=OPERATION_KEYS.get(operation, operation),
         transition=TRANSITION_KEYS.get(transition, transition),
-        remaining_minutes=parse_remaining_time(raw.get("00ED")),
+        remaining_minutes=remaining_minutes,
         wash_remaining_minutes=_remaining_when(
             raw, "00DB", active=_is_washing(operation, transition)
         ),
@@ -136,6 +144,10 @@ def compute_cycle_progress(
         if transition in _FINISHED_TRANSITIONS:
             return 100, None
         return 0, None
+
+    operation, _ = _phase(data.raw)
+    if _is_waiting_for_nanoe(operation):
+        return 100, None
 
     remaining = data.remaining_minutes
     if remaining is None:

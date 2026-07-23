@@ -365,3 +365,37 @@ def test_cycle_progress(
     )
     assert progress == expected_progress
     assert new_baseline == expected_baseline
+
+
+def test_remaining_time_zero_when_waiting_for_nanoe():
+    data = build_device_data(
+        {
+            "0121": "0A",
+            "00E2": "00",
+            "00ED": "0200",  # 120 minutes if parsed directly
+        }
+    )
+
+    assert parse_remaining_time("0200") == 120
+    assert data.remaining_minutes == 0
+
+
+def test_cycle_progress_waiting_for_nanoe():
+    from tests.conftest import state
+
+    data = build_device_data(
+        {
+            "0121": "0A",
+            "00E2": "00",
+            "00ED": "0200",
+        }
+    )
+    progress, baseline = state.compute_cycle_progress(
+        data,
+        running=True,
+        was_running=True,
+        baseline_minutes=120,
+    )
+
+    assert progress == 100
+    assert baseline is None
