@@ -12,7 +12,10 @@ from tests.conftest import (
     normalize_value,
     parse_remaining_time,
     parse_status,
+    state,
 )
+
+compute_cycle_progress = state.compute_cycle_progress
 
 # Values from tests/fixtures/status_econavi.json (Econavi idle, power OFF).
 ECONAVI_STATUS = {
@@ -340,31 +343,83 @@ def test_running_state(properties, running):
     assert is_device_running(build_device_data(properties)) is running
 
 
+def _progress(properties, *, running, elapsed=None):
+    data = build_device_data(properties)
+    return compute_cycle_progress(data, running=running, elapsed_minutes=elapsed)
+
+
 @pytest.mark.parametrize(
-    ("properties", "running", "was_running", "baseline", "expected_progress", "expected_baseline"),
+    ("properties", "running", "elapsed", "expected_progress"),
     [
-        ({"0121": "00", "00E2": "00"}, False, False, None, 0, None),
-        ({"0121": "12", "00E2": "54"}, False, True, 120, 100, None),
-        ({"0121": "01", "00E2": "41", "00ED": "0200"}, True, False, None, 0, 120),
-        ({"0121": "01", "00E2": "41", "00ED": "0100"}, True, True, 120, 50, 120),
-        ({"0121": "01", "00E2": "41", "00ED": "0000"}, True, True, 120, 100, 120),
-        ({"0121": "01", "00E2": "41", "00ED": "0400"}, True, True, 120, 0, 240),
+        ({"0121": "00", "00E2": "00"}, False, None, 0),
+        ({"0121": "12", "00E2": "54"}, False, None, 100),
+        ({"0121": "01", "00E2": "41", "00ED": "0200"}, True, None, 0),
+        ({"0121": "01", "00E2": "41", "00ED": "0100"}, True, 60, 50),
+        ({"0121": "01", "00E2": "41", "00ED": "0000"}, True, 60, 100),
     ],
 )
-def test_cycle_progress(
-    properties, running, was_running, baseline, expected_progress, expected_baseline
-):
-    from tests.conftest import state
+def test_cycle_progress(properties, running, elapsed, expected_progress):
+    assert _progress(properties, running=running, elapsed=elapsed) == expected_progress
 
-    data = build_device_data(properties)
-    progress, new_baseline = state.compute_cycle_progress(
-        data,
-        running=running,
-        was_running=was_running,
-        baseline_minutes=baseline,
+
+def test_cycle_progress_waiting_for_nanoe():
+    assert (
+        _progress(
+            {
+                "0121": "0A",
+                "00E2": "00",
+                "00ED": "0200",
+            },
+            running=True,
+            elapsed=30,
+        )
+        == 100
     )
-    assert progress == expected_progress
-    assert new_baseline == expected_baseline
+
+
+def test_cycle_progress_dry_only_course():
+    assert (
+        _progress(
+            {
+                "0121": "06",
+                "00E2": "52",
+                "00ED": "0200",
+                "00DC": "0200",
+            },
+            running=True,
+        )
+        == 0
+    )
+
+    assert (
+        _progress(
+            {
+                "0121": "06",
+                "00E2": "52",
+                "00ED": "0200",
+                "00DC": "0100",
+            },
+            running=True,
+            elapsed=60,
+        )
+        == 50
+    )
+
+
+def test_cycle_progress_uses_elapsed_time():
+    assert (
+        _progress(
+            {
+                "0121": "18",
+                "00E2": "52",
+                "00ED": "013A",
+                "00DC": "013A",
+            },
+            running=True,
+            elapsed=10,
+        )
+        == 8
+    )
 
 
 def test_remaining_time_zero_when_waiting_for_nanoe():
@@ -380,22 +435,46 @@ def test_remaining_time_zero_when_waiting_for_nanoe():
     assert data.remaining_minutes == 0
 
 
-def test_cycle_progress_waiting_for_nanoe():
-    from tests.conftest import state
-
+def test_remaining_time_uses_dry_time_for_dry_only_course():
     data = build_device_data(
         {
-            "0121": "0A",
-            "00E2": "00",
-            "00ED": "0200",
+            "0121": "06",
+            "00E2": "52",
+            "00ED": "0000",
+            "00DC": "0200",
         }
     )
-    progress, baseline = state.compute_cycle_progress(
-        data,
-        running=True,
-        was_running=True,
-        baseline_minutes=120,
+
+    assert data.dry_remaining_minutes == 120
+    assert data.remaining_minutes == 120
+
+
+def test_remaining_time_uses_dry_during_drying():
+    data = build_device_data(
+        {
+            "0121": "06",
+            "00E2": "52",
+            "00ED": "0200",
+            "00DC": "0100",
+        }
     )
 
-    assert progress == 100
-    assert baseline is None
+    assert data.remaining_minutes == 60
+
+
+def test_remaining_time_during_combined_dry_uses_dry():
+    data = build_device_data(
+        {
+            "0121": "06",
+            "00E2": "52",
+            "00ED": "0130",
+            "00DC": "0010",
+        }
+    )
+
+    assert data.remaining_minutes == 16
+
+
+def test_empty_status_is_not_running():
+    data = build_device_data({})
+    assert is_device_running(data) is False

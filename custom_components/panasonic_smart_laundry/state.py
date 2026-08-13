@@ -13,7 +13,7 @@ TRANSITION = "00E2"
 
 _WASH_OPS = frozenset({"01", "03", "05", "0F", "10"})
 _WASH_TRANSITIONS = frozenset({"41", "42", "43", "E1"})
-_DRY_OPS = frozenset({"06", "07"})
+_DRY_OPS = frozenset({"06", "07", "18", "19"})
 _NANOE_OPS = frozenset({"09", "0A", "0B"})
 _NANOE_TRANSITIONS = frozenset({"E3"})
 _WAITING_FOR_NANOE_OP = "0A"
@@ -86,28 +86,68 @@ def _is_waiting_for_nanoe(operation: str) -> bool:
     return operation == _WAITING_FOR_NANOE_OP
 
 
+def cycle_should_reset(data: LaundryDeviceData) -> bool:
+    """Return whether in-cycle progress tracking should be cleared."""
+    power = data.raw.get("0080")
+    if power == "31":
+        return True
+
+    transition = data.raw.get(TRANSITION, "")
+    if transition in _FINISHED_TRANSITIONS:
+        return True
+
+    operation, transition = _phase(data.raw)
+    return operation in _IDLE_OPS and transition in _IDLE_TRANSITIONS
+
+
+def _course_remaining_minutes(
+    raw: dict[str, str], operation: str, transition: str
+) -> RemainingTimeValue:
+    """Pick the best remaining-time source for the current phase."""
+    if _is_waiting_for_nanoe(operation):
+        return 0
+
+    total = parse_remaining_time(raw.get("00ED"))
+
+    if _is_drying(operation, transition):
+        dry = parse_remaining_time(raw.get("00DC"))
+        if dry is not None and dry > 0:
+            return dry
+
+    if _is_washing(operation, transition):
+        wash = parse_remaining_time(raw.get("00DB"))
+        if total is not None and total > 0:
+            return total
+        if wash is not None and wash > 0:
+            return wash
+
+    return total
+
+
 def build_device_data(raw: dict[str, str]) -> LaundryDeviceData:
     """Build normalized state from a status property map."""
     operation, transition = _phase(raw)
-    remaining_minutes = parse_remaining_time(raw.get("00ED"))
-    if _is_waiting_for_nanoe(operation):
-        remaining_minutes = 0
+    wash_remaining_minutes = _remaining_when(
+        raw, "00DB", active=_is_washing(operation, transition)
+    )
+    dry_remaining_minutes = _remaining_when(
+        raw, "00DC", active=_is_drying(operation, transition)
+    )
     return LaundryDeviceData(
         raw=raw,
         operation=OPERATION_KEYS.get(operation, operation),
         transition=TRANSITION_KEYS.get(transition, transition),
-        remaining_minutes=remaining_minutes,
-        wash_remaining_minutes=_remaining_when(
-            raw, "00DB", active=_is_washing(operation, transition)
-        ),
-        dry_remaining_minutes=_remaining_when(
-            raw, "00DC", active=_is_drying(operation, transition)
-        ),
+        remaining_minutes=_course_remaining_minutes(raw, operation, transition),
+        wash_remaining_minutes=wash_remaining_minutes,
+        dry_remaining_minutes=dry_remaining_minutes,
     )
 
 
 def is_device_running(data: LaundryDeviceData) -> bool:
     """True when the machine is in an active cycle."""
+    if not data.raw:
+        return False
+
     power = data.raw.get("0080")
     if power == "31":
         return False
@@ -132,38 +172,26 @@ def compute_cycle_progress(
     data: LaundryDeviceData,
     *,
     running: bool,
-    was_running: bool,
-    baseline_minutes: int | None,
-) -> tuple[int | None, int | None]:
-    """Estimate whole-course progress from total remaining time (00ED).
-
-    Returns (progress_percent, updated_baseline_minutes).
-    """
+    elapsed_minutes: float | None,
+) -> int | None:
+    """Estimate course progress from elapsed time and remaining time."""
     if not running:
         transition = data.raw.get(TRANSITION, "")
         if transition in _FINISHED_TRANSITIONS:
-            return 100, None
-        return 0, None
+            return 100
+        return 0
 
     operation, _ = _phase(data.raw)
     if _is_waiting_for_nanoe(operation):
-        return 100, None
+        return 100
 
     remaining = data.remaining_minutes
     if remaining is None:
-        return None, baseline_minutes
-
-    if (running and not was_running) or baseline_minutes is None:
-        if remaining > 0:
-            baseline_minutes = remaining
-    elif remaining > baseline_minutes:
-        baseline_minutes = remaining
-
-    if baseline_minutes is None or baseline_minutes <= 0:
-        return (100 if remaining <= 0 else None), baseline_minutes
-
+        return None
     if remaining <= 0:
-        return 100, baseline_minutes
+        return 100
+    if elapsed_minutes is None or elapsed_minutes <= 0:
+        return 0
 
-    progress = round(100 * (1 - remaining / baseline_minutes))
-    return max(0, min(100, progress)), baseline_minutes
+    progress = round(100 * elapsed_minutes / (elapsed_minutes + remaining))
+    return max(0, min(100, progress))

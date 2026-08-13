@@ -198,7 +198,7 @@ class LabeledStateSensor(PanasonicEntity, SensorEntity):
 
 
 class CourseProgressSensor(PanasonicEntity, SensorEntity):
-    """Estimated whole-course progress from total remaining time."""
+    """Estimated whole-course progress from elapsed and remaining time."""
 
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class = SensorStateClass.MEASUREMENT

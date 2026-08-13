@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -16,6 +16,7 @@ from .state import (
     LaundryDeviceData,
     build_device_data,
     compute_cycle_progress,
+    cycle_should_reset,
     is_device_running,
 )
 
@@ -40,8 +41,7 @@ class PanasonicSmartLaundryCoordinator(DataUpdateCoordinator[LaundryDeviceData])
         self.api = api
         self.com_id = entry.data[CONF_COM_ID]
         self.appliance_id = entry.data[CONF_APPLIANCE_ID]
-        self._was_running = False
-        self._cycle_remaining_baseline: int | None = None
+        self._cycle_started_at: datetime | None = None
 
     async def _async_update_data(self) -> LaundryDeviceData:
         try:
@@ -50,17 +50,31 @@ class PanasonicSmartLaundryCoordinator(DataUpdateCoordinator[LaundryDeviceData])
             raise ConfigEntryAuthFailed(str(err)) from err
         except PanasonicApiError as err:
             logger.warning("Status update failed: %s", err)
+            if self.data is not None:
+                return self.data
             raw = {}
+
+        if not raw and self.data is not None:
+            return self.data
 
         data = build_device_data(raw)
         running = is_device_running(data)
-        progress, baseline = compute_cycle_progress(
+
+        if not running:
+            if cycle_should_reset(data):
+                self._cycle_started_at = None
+        elif self._cycle_started_at is None:
+            self._cycle_started_at = datetime.now(timezone.utc)
+
+        elapsed_minutes = None
+        if running and self._cycle_started_at is not None:
+            elapsed_minutes = (
+                datetime.now(timezone.utc) - self._cycle_started_at
+            ).total_seconds() / 60
+
+        data.progress_percent = compute_cycle_progress(
             data,
             running=running,
-            was_running=self._was_running,
-            baseline_minutes=self._cycle_remaining_baseline,
+            elapsed_minutes=elapsed_minutes,
         )
-        self._was_running = running
-        self._cycle_remaining_baseline = baseline
-        data.progress_percent = progress
         return data
