@@ -59,7 +59,7 @@ def main() -> None:
     }
 
     response = requests.get(
-        f"{base}/laundry/v5/device/status/",
+        f"{base}/laundry/v5/device/status",
         headers=headers,
         timeout=30,
     )

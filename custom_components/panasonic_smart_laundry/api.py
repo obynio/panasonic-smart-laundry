@@ -426,7 +426,7 @@ class PanasonicSmartLaundryApi:
         try:
             data = await self._request(
                 "GET",
-                "/laundry/v5/device/status/",
+                "/laundry/v5/device/status",
                 extra_headers={**base_headers, "X-Cached": "false"},
             )
         except PanasonicApiError as err:
@@ -434,7 +434,7 @@ class PanasonicSmartLaundryApi:
                 raise
             data = await self._request(
                 "GET",
-                "/laundry/v5/device/status/",
+                "/laundry/v5/device/status",
                 extra_headers=base_headers,
             )
         return self._parse_status_response(data)
