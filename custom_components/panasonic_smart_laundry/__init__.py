@@ -16,6 +16,7 @@ from homeassistant.helpers.event import async_track_point_in_time
 from .api import PanasonicSmartLaundryApi
 from .const import DOMAIN, TOKEN_REFRESH_BUFFER
 from .coordinator import PanasonicSmartLaundryCoordinator
+from .labels import async_load_model_labels
 
 logger = logging.getLogger(__name__)
 
@@ -132,6 +133,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     _schedule_token_refresh()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator
+    await async_load_model_labels(hass, entry.data["com_id"])
     await hass.config_entries.async_forward_entry_setups(entry, platforms)
     return True
 

@@ -22,6 +22,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+
     from .api import PanasonicSmartLaundryApi
 
 logger = logging.getLogger(__name__)
@@ -31,6 +33,11 @@ COURSE_PROPERTIES = ("00D0", "00FA", "01E6")
 TRANSITION = "00E2"
 NO_COURSE_TRANSITIONS = frozenset({"00", "61"})
 EMPTY_LABELS = {"ja": "なし", "en": "None"}
+
+
+async def async_load_model_labels(hass: HomeAssistant, com_id: str) -> None:
+    """Load bundled labels for a model without blocking the event loop."""
+    await hass.async_add_executor_job(_load_model_labels, com_id)
 
 
 @lru_cache(maxsize=64)
