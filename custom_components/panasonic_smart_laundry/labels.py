@@ -17,7 +17,6 @@ from __future__ import annotations
 
 import json
 import logging
-from functools import lru_cache
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -34,14 +33,11 @@ TRANSITION = "00E2"
 NO_COURSE_TRANSITIONS = frozenset({"00", "61"})
 EMPTY_LABELS = {"ja": "なし", "en": "None"}
 
-
-async def async_load_model_labels(hass: HomeAssistant, com_id: str) -> None:
-    """Load bundled labels for a model without blocking the event loop."""
-    await hass.async_add_executor_job(_load_model_labels, com_id)
+ModelLabels = dict[str, dict[str, dict[str, str]]]
 
 
-@lru_cache(maxsize=64)
-def _load_model_labels(com_id: str) -> dict[str, dict[str, dict[str, str]]]:
+def load_model_labels_from_disk(com_id: str) -> ModelLabels:
+    """Read bundled labels for a model from disk (blocking; use via executor in HA)."""
     path = LABELS_DIR / f"{com_id}.json"
     if not path.is_file():
         return {}
@@ -52,8 +48,15 @@ def _load_model_labels(com_id: str) -> dict[str, dict[str, dict[str, str]]]:
         return {}
 
 
-def _bundled(com_id: str, prop_id: str, value: str, *, japanese: bool) -> str | None:
-    entry = _load_model_labels(com_id).get(prop_id, {}).get(value)
+async def async_load_model_labels(hass: HomeAssistant, com_id: str) -> ModelLabels:
+    """Load bundled labels for a model without blocking the event loop."""
+    return await hass.async_add_executor_job(load_model_labels_from_disk, com_id)
+
+
+def _bundled(
+    model_labels: ModelLabels, prop_id: str, value: str, *, japanese: bool
+) -> str | None:
+    entry = model_labels.get(prop_id, {}).get(value)
     if not entry:
         if value == "00":
             return EMPTY_LABELS["ja" if japanese else "en"]
@@ -62,14 +65,14 @@ def _bundled(com_id: str, prop_id: str, value: str, *, japanese: bool) -> str | 
     return text or None
 
 
-def has_bundled_property(com_id: str, prop_id: str) -> bool:
+def has_bundled_property(model_labels: ModelLabels, prop_id: str) -> bool:
     """Return whether bundled labels define values for a property."""
-    return prop_id.upper() in _load_model_labels(com_id)
+    return prop_id.upper() in model_labels
 
 
 def get_display_label(
-    api: PanasonicSmartLaundryApi,
-    com_id: str,
+    api: PanasonicSmartLaundryApi | None,
+    model_labels: ModelLabels,
     prop_id: str,
     value: str | None,
     *,
@@ -80,17 +83,17 @@ def get_display_label(
         return None
 
     prop_id = prop_id.upper()
-    if japanese:
+    if japanese and api is not None:
         return api.get_label(prop_id, value) or _bundled(
-            com_id, prop_id, value, japanese=True
+            model_labels, prop_id, value, japanese=True
         )
 
-    return _bundled(com_id, prop_id, value, japanese=False)
+    return _bundled(model_labels, prop_id, value, japanese=False)
 
 
 def get_course_label(
-    api: PanasonicSmartLaundryApi,
-    com_id: str,
+    api: PanasonicSmartLaundryApi | None,
+    model_labels: ModelLabels,
     raw: dict[str, str],
     *,
     japanese: bool,
@@ -100,15 +103,17 @@ def get_course_label(
         value = raw.get(prop_id)
         if not value:
             continue
-        label = get_display_label(api, com_id, prop_id, value, japanese=japanese)
+        label = get_display_label(
+            api, model_labels, prop_id, value, japanese=japanese
+        )
         if label:
             return label
     return None
 
 
 def resolve_course_label(
-    api: PanasonicSmartLaundryApi,
-    com_id: str,
+    api: PanasonicSmartLaundryApi | None,
+    model_labels: ModelLabels,
     raw: dict[str, str],
     *,
     japanese: bool,
@@ -116,4 +121,4 @@ def resolve_course_label(
     """Return the course label, or None/なし when no course is running."""
     if raw.get(TRANSITION, "") in NO_COURSE_TRANSITIONS:
         return EMPTY_LABELS["ja" if japanese else "en"]
-    return get_course_label(api, com_id, raw, japanese=japanese)
+    return get_course_label(api, model_labels, raw, japanese=japanese)

@@ -7,13 +7,16 @@ import time
 from collections.abc import Callable
 from datetime import datetime, timedelta, timezone
 
+import aiohttp
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_track_point_in_time
 
-from .api import PanasonicSmartLaundryApi
+from .api import PanasonicApiError, PanasonicAuthError, PanasonicSmartLaundryApi
 from .const import DOMAIN, TOKEN_REFRESH_BUFFER
 from .coordinator import PanasonicSmartLaundryCoordinator
 from .labels import async_load_model_labels
@@ -119,12 +122,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         on_tokens_updated=on_tokens_updated,
     )
 
-    if not entry.data.get("access_token"):
-        await api.login()
-    elif api.token_expires_at is None or time.time() >= api.token_expires_at - TOKEN_REFRESH_BUFFER:
-        await api.refresh_access_token()
+    try:
+        if not entry.data.get("access_token"):
+            await api.login()
+        elif api.token_expires_at is None or time.time() >= api.token_expires_at - TOKEN_REFRESH_BUFFER:
+            await api.refresh_access_token()
 
-    await api.get_device_info(entry.data["com_id"])
+        await api.get_device_info(entry.data["com_id"])
+    except PanasonicAuthError as err:
+        raise ConfigEntryAuthFailed(str(err)) from err
+    except (PanasonicApiError, aiohttp.ClientError, TimeoutError) as err:
+        raise ConfigEntryNotReady from err
 
     coordinator = PanasonicSmartLaundryCoordinator(hass, entry, api)
     coordinator._cancel_token_refresh = _cancel_token_refresh  # noqa: SLF001
@@ -133,7 +141,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     _schedule_token_refresh()
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator
-    await async_load_model_labels(hass, entry.data["com_id"])
+    coordinator.model_labels = await async_load_model_labels(hass, coordinator.com_id)
     await hass.config_entries.async_forward_entry_setups(entry, platforms)
     return True
 

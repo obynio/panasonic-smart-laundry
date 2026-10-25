@@ -8,9 +8,12 @@ from datetime import datetime, timedelta, timezone
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+
+import aiohttp
 
 from .api import PanasonicApiError, PanasonicAuthError, PanasonicSmartLaundryApi
+from .labels import ModelLabels
 from .const import CONF_APPLIANCE_ID, CONF_COM_ID, DOMAIN, SCAN_INTERVAL
 from .state import (
     LaundryDeviceData,
@@ -41,6 +44,7 @@ class PanasonicSmartLaundryCoordinator(DataUpdateCoordinator[LaundryDeviceData])
         self.api = api
         self.com_id = entry.data[CONF_COM_ID]
         self.appliance_id = entry.data[CONF_APPLIANCE_ID]
+        self.model_labels: ModelLabels = {}
         self._cycle_started_at: datetime | None = None
 
     async def _async_update_data(self) -> LaundryDeviceData:
@@ -48,6 +52,8 @@ class PanasonicSmartLaundryCoordinator(DataUpdateCoordinator[LaundryDeviceData])
             raw = await self.api.get_status(appliance_id=self.appliance_id)
         except PanasonicAuthError as err:
             raise ConfigEntryAuthFailed(str(err)) from err
+        except (aiohttp.ClientError, TimeoutError) as err:
+            raise UpdateFailed(str(err)) from err
         except PanasonicApiError as err:
             logger.warning("Status update failed: %s", err)
             if self.data is not None:

@@ -36,7 +36,7 @@ def _machine_supports_supply(
     api = coordinator.api
     if api.supports_supply_property(prop_id):
         return True
-    return has_bundled_property(coordinator.com_id, prop_id)
+    return has_bundled_property(coordinator.model_labels, prop_id)
 
 
 async def async_setup_entry(
@@ -103,7 +103,7 @@ async def async_setup_entry(
             icon="mdi:timer-outline",
         )
     )
-    if has_bundled_property(coordinator.com_id, DOOR_PROPERTY):
+    if has_bundled_property(coordinator.model_labels, DOOR_PROPERTY):
         entities.append(
             LabeledStateSensor(
                 coordinator,
@@ -170,14 +170,14 @@ class LabeledStateSensor(PanasonicEntity, SensorEntity):
         if self._is_course:
             label = resolve_course_label(
                 self.coordinator.api,
-                self.coordinator.com_id,
+                self.coordinator.model_labels,
                 self.coordinator.data.raw,
                 japanese=japanese,
             )
         else:
             label = get_display_label(
                 self.coordinator.api,
-                self.coordinator.com_id,
+                self.coordinator.model_labels,
                 prop_id,
                 value,
                 japanese=japanese,

@@ -101,10 +101,11 @@ def test_labels_from_device_info(device):
 
 
 def test_door_label_from_bundled_labels():
-    from panasonic_smart_laundry.labels import get_display_label
+    from panasonic_smart_laundry.labels import get_display_label, load_model_labels_from_disk
 
-    assert get_display_label(None, "NA-VX9800", "00B0", "41", japanese=False) == "Open"
-    assert get_display_label(None, "NA-VX9800", "00B0", "42", japanese=False) == "Closed"
+    labels = load_model_labels_from_disk("NA-VX9800")
+    assert get_display_label(None, labels, "00B0", "41", japanese=False) == "Open"
+    assert get_display_label(None, labels, "00B0", "42", japanese=False) == "Closed"
 
 
 def test_label_requires_device_info():
@@ -128,10 +129,10 @@ def test_supports_supply_property_without_device_info():
 
 
 def test_has_bundled_property():
-    from panasonic_smart_laundry.labels import has_bundled_property
+    from panasonic_smart_laundry.labels import has_bundled_property, load_model_labels_from_disk
 
-    assert has_bundled_property("NA-VX9800", "0136") is True
-    assert has_bundled_property("NA-F8AKE5", "0136") is False
+    assert has_bundled_property(load_model_labels_from_disk("NA-VX9800"), "0136") is True
+    assert has_bundled_property(load_model_labels_from_disk("NA-F8AKE5"), "0136") is False
 
 
 @pytest.mark.parametrize(
@@ -163,32 +164,36 @@ def test_device_data_from_econavi_fixture(parsed):
 
 
 def test_course_none_on_standby_before_start():
-    from panasonic_smart_laundry.labels import resolve_course_label
+    from panasonic_smart_laundry.labels import load_model_labels_from_disk, resolve_course_label
 
+    labels = load_model_labels_from_disk("NA-VX9800")
     raw = {"00D0": "81", "0080": "30", "0121": "00", "00E2": "61"}
-    assert resolve_course_label(None, "NA-VX9800", raw, japanese=False) == "None"
-    assert resolve_course_label(None, "NA-VX9800", raw, japanese=True) == "なし"
+    assert resolve_course_label(None, labels, raw, japanese=False) == "None"
+    assert resolve_course_label(None, labels, raw, japanese=True) == "なし"
 
 
 def test_course_none_when_idle():
-    from panasonic_smart_laundry.labels import resolve_course_label
+    from panasonic_smart_laundry.labels import load_model_labels_from_disk, resolve_course_label
 
+    labels = load_model_labels_from_disk("NA-VX9800")
     raw = {"00D0": "81", "0080": "31", "0121": "00", "00E2": "00"}
-    assert resolve_course_label(None, "NA-VX9800", raw, japanese=False) == "None"
-    assert resolve_course_label(None, "NA-VX9800", raw, japanese=True) == "なし"
+    assert resolve_course_label(None, labels, raw, japanese=False) == "None"
+    assert resolve_course_label(None, labels, raw, japanese=True) == "なし"
 
 
 def test_transition_none_when_idle():
-    from panasonic_smart_laundry.labels import get_display_label
+    from panasonic_smart_laundry.labels import get_display_label, load_model_labels_from_disk
 
-    assert get_display_label(None, "NA-VX9800", "00E2", "00", japanese=False) == "None"
+    labels = load_model_labels_from_disk("NA-VX9800")
+    assert get_display_label(None, labels, "00E2", "00", japanese=False) == "None"
 
 
 def test_course_shown_during_wash():
-    from panasonic_smart_laundry.labels import resolve_course_label
+    from panasonic_smart_laundry.labels import load_model_labels_from_disk, resolve_course_label
 
+    labels = load_model_labels_from_disk("NA-VX9800")
     raw = {"00D0": "81", "0080": "30", "0121": "01", "00E2": "41"}
-    assert resolve_course_label(None, "NA-VX9800", raw, japanese=False) == "Individual wash"
+    assert resolve_course_label(None, labels, raw, japanese=False) == "Individual wash"
 
 
 def test_device_data_with_numeric_times():
