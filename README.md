@@ -1,5 +1,8 @@
 # Panasonic Smart Laundry for Home Assistant
 
+> [!CAUTION]
+> Panasonic recently introduced a captcha on their login page and it can't be bypassed easily like before, probably because of this project. I'll put this project on hold for now until I can find a way to get rid of it :(
+
 Custom Home Assistant integration for Panasonic Japan connected washing machines.
 
 <img width="403" height="377" alt="entities" src="https://github.com/user-attachments/assets/919cf09c-0726-4e2a-9163-7b1ef80ddfcd" />
